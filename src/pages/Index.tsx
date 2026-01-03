@@ -7,9 +7,11 @@ import BrandsSection from '@/components/home/BrandsSection';
 import FeaturesSection from '@/components/home/FeaturesSection';
 import { products } from '@/data/products';
 import { useCart } from '@/context/CartContext';
+import { useLanguage } from '@/context/LanguageContext';
 
 const Index = () => {
   const { recentlyViewed } = useCart();
+  const { t } = useLanguage();
 
   const newProducts = products.filter(p => p.isNew);
   const discountedProducts = products.filter(p => p.discount);
@@ -23,13 +25,13 @@ const Index = () => {
         <CategoryCarousel />
         
         <ProductsSection
-          title="Hot Deals"
+          title={t('hotDeals')}
           products={discountedProducts}
           viewAllLink="/products?discount=true"
         />
         
         <ProductsSection
-          title="New Arrivals"
+          title={t('newArrivals')}
           products={newProducts}
           viewAllLink="/products?new=true"
         />
@@ -37,14 +39,14 @@ const Index = () => {
         <BrandsSection />
         
         <ProductsSection
-          title="Best Sellers"
+          title={t('bestSellers')}
           products={products}
           viewAllLink="/products"
         />
         
         {recentlyViewed.length > 0 && (
           <ProductsSection
-            title="Recently Viewed"
+            title={t('recentlyViewed')}
             products={recentlyViewed}
           />
         )}

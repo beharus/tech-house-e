@@ -1,30 +1,34 @@
 import { useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { ChevronLeft, ChevronRight, Home, ChefHat, Sparkles, Thermometer, Tv, Heart, Percent } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Percent } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useLanguage } from '@/context/LanguageContext';
 
-const categoryIcons: { [key: string]: React.ElementType } = {
-  'Smart Home': Home,
-  'Kitchen': ChefHat,
-  'Cleaning': Sparkles,
-  'Climate': Thermometer,
-  'Electronics': Tv,
-  'Personal Care': Heart,
-  'Discounts': Percent,
-};
+// Import product images for categories
+import smartSpeaker from '@/assets/products/smart-speaker.jpg';
+import airConditioner from '@/assets/products/air-conditioner.jpg';
+import robotVacuum from '@/assets/products/robot-vacuum.jpg';
+import coffeeMachine from '@/assets/products/coffee-machine.jpg';
+import smartTv from '@/assets/products/smart-tv.jpg';
+import headphones from '@/assets/products/headphones.jpg';
+import blender from '@/assets/products/blender.jpg';
+import airPurifier from '@/assets/products/air-purifier.jpg';
 
 const categoryData = [
-  { id: 'discounts', name: 'Discounts', color: 'bg-destructive/10 text-destructive' },
-  { id: 'smart-home', name: 'Smart Home', color: 'bg-primary/10 text-primary' },
-  { id: 'kitchen', name: 'Kitchen', color: 'bg-accent text-accent-foreground' },
-  { id: 'cleaning', name: 'Cleaning', color: 'bg-chart-2/10 text-chart-2' },
-  { id: 'climate', name: 'Climate', color: 'bg-chart-3/10 text-chart-3' },
-  { id: 'electronics', name: 'Electronics', color: 'bg-chart-4/10 text-chart-4' },
-  { id: 'personal-care', name: 'Personal Care', color: 'bg-chart-5/10 text-chart-5' },
+  { id: 'discounts', nameKey: 'discounts', image: null, isDiscount: true },
+  { id: 'smart-home', nameKey: 'smartHome', image: smartSpeaker },
+  { id: 'climate', nameKey: 'airConditioners', image: airConditioner },
+  { id: 'cleaning', nameKey: 'vacuumCleaners', image: robotVacuum },
+  { id: 'kitchen', nameKey: 'kitchen', image: coffeeMachine },
+  { id: 'electronics', nameKey: 'televisions', image: smartTv },
+  { id: 'electronics', nameKey: 'electronics', image: headphones },
+  { id: 'kitchen', nameKey: 'kitchen', image: blender },
+  { id: 'climate', nameKey: 'climate', image: airPurifier },
 ];
 
 const CategoryCarousel = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const { t } = useLanguage();
 
   const scroll = (direction: 'left' | 'right') => {
     if (scrollRef.current) {
@@ -37,51 +41,56 @@ const CategoryCarousel = () => {
   };
 
   return (
-    <section className="container py-8">
-      <div className="flex items-center justify-between mb-6">
-        <h2 className="text-2xl font-bold">Popular Categories</h2>
-        <div className="flex gap-2">
-          <Button
-            variant="outline"
-            size="icon"
-            onClick={() => scroll('left')}
-            className="h-8 w-8"
-          >
-            <ChevronLeft className="h-4 w-4" />
-          </Button>
-          <Button
-            variant="outline"
-            size="icon"
-            onClick={() => scroll('right')}
-            className="h-8 w-8"
-          >
-            <ChevronRight className="h-4 w-4" />
-          </Button>
-        </div>
-      </div>
+    <section className="container py-6">
+      <div className="relative">
+        <Button
+          variant="outline"
+          size="icon"
+          onClick={() => scroll('left')}
+          className="absolute left-0 top-1/2 -translate-y-1/2 z-10 h-10 w-10 rounded-full bg-card shadow-md border-border hidden md:flex"
+        >
+          <ChevronLeft className="h-5 w-5" />
+        </Button>
 
-      <div
-        ref={scrollRef}
-        className="flex gap-4 overflow-x-auto scrollbar-hide pb-2"
-        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-      >
-        {categoryData.map(category => {
-          const Icon = categoryIcons[category.name] || Home;
-          return (
+        <div
+          ref={scrollRef}
+          className="flex gap-3 overflow-x-auto scrollbar-hide px-0 md:px-12"
+          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+        >
+          {categoryData.map((category, index) => (
             <Link
-              key={category.id}
+              key={`${category.id}-${index}`}
               to={`/products?category=${category.id}`}
-              className="group flex flex-col items-center gap-3 p-6 min-w-[140px] rounded-xl bg-card hover:shadow-md transition-all duration-300 hover:-translate-y-1"
+              className="group flex flex-col items-center p-4 min-w-[140px] rounded-2xl bg-card hover:shadow-lg transition-shadow duration-300"
             >
-              <div className={`w-16 h-16 rounded-full ${category.color} flex items-center justify-center group-hover:scale-110 transition-transform`}>
-                <Icon className="h-7 w-7" />
+              <div className="w-24 h-20 flex items-center justify-center mb-2 relative">
+                {category.isDiscount ? (
+                  <div className="w-16 h-16 rounded-xl bg-destructive/10 flex items-center justify-center">
+                    <Percent className="h-8 w-8 text-destructive" />
+                  </div>
+                ) : (
+                  <img
+                    src={category.image!}
+                    alt={t(category.nameKey)}
+                    className="max-w-full max-h-full object-contain"
+                  />
+                )}
               </div>
               <span className="text-sm font-medium text-center whitespace-nowrap">
-                {category.name}
+                {t(category.nameKey)}
               </span>
             </Link>
-          );
-        })}
+          ))}
+        </div>
+
+        <Button
+          variant="outline"
+          size="icon"
+          onClick={() => scroll('right')}
+          className="absolute right-0 top-1/2 -translate-y-1/2 z-10 h-10 w-10 rounded-full bg-card shadow-md border-border hidden md:flex"
+        >
+          <ChevronRight className="h-5 w-5" />
+        </Button>
       </div>
     </section>
   );
