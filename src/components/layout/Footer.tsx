@@ -85,22 +85,28 @@ const Footer = () => {
           <p className="text-sm text-primary-foreground/60">
             © 2026 Tech House. {t('allRightsReserved')}
           </p>
-          <div className="flex items-center gap-3 flex-wrap justify-center">
+          <div className="flex items-center gap-2 md:gap-3 flex-wrap justify-center">
             {/* Uzbek Payment Methods */}
-            <div className="flex items-center justify-center h-8 px-3 bg-primary-foreground rounded text-primary font-bold text-xs">
+            <div className="flex items-center justify-center h-7 md:h-8 px-2 md:px-3 bg-primary-foreground rounded text-primary font-bold text-[10px] md:text-xs">
               UZCARD
             </div>
-            <div className="flex items-center justify-center h-8 px-3 bg-primary-foreground rounded text-primary font-bold text-xs">
+            <div className="flex items-center justify-center h-7 md:h-8 px-2 md:px-3 bg-primary-foreground rounded text-primary font-bold text-[10px] md:text-xs">
               HUMO
             </div>
-            <div className="flex items-center justify-center h-8 px-3 bg-[#00CCCC] rounded text-foreground font-bold text-xs">
+            <div className="flex items-center justify-center h-7 md:h-8 px-2 md:px-3 bg-[#00CCCC] rounded text-foreground font-bold text-[10px] md:text-xs">
               payme
             </div>
-            <div className="flex items-center justify-center h-8 px-3 bg-[#009FE3] rounded text-primary-foreground font-bold text-xs">
+            <div className="flex items-center justify-center h-7 md:h-8 px-2 md:px-3 bg-[#009FE3] rounded text-primary-foreground font-bold text-[10px] md:text-xs">
               Click
             </div>
-            <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa" className="h-6 opacity-80 invert" />
-            <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard" className="h-6 opacity-80" />
+            <div className="flex items-center justify-center h-7 md:h-8 px-2 md:px-3 bg-[#EE5C24] rounded text-white font-bold text-[10px] md:text-xs">
+              Oson
+            </div>
+            <div className="flex items-center justify-center h-7 md:h-8 px-2 md:px-3 bg-[#FFD700] rounded text-black font-bold text-[10px] md:text-xs">
+              APELSIN
+            </div>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa" className="h-5 md:h-6 opacity-80 invert" />
+            <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard" className="h-5 md:h-6 opacity-80" />
           </div>
         </div>
       </div>

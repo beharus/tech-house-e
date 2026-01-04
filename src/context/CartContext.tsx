@@ -11,6 +11,7 @@ export interface Product {
   rating: number;
   reviews: number;
   inStock: boolean;
+  stockCount?: number;
   isNew?: boolean;
   discount?: number;
   features?: string[];
@@ -30,6 +31,10 @@ interface CartContextType {
   totalPrice: number;
   recentlyViewed: Product[];
   addToRecentlyViewed: (product: Product) => void;
+  wishlist: Product[];
+  addToWishlist: (product: Product) => void;
+  removeFromWishlist: (productId: string) => void;
+  isInWishlist: (productId: string) => boolean;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -37,6 +42,7 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [cart, setCart] = useState<CartItem[]>([]);
   const [recentlyViewed, setRecentlyViewed] = useState<Product[]>([]);
+  const [wishlist, setWishlist] = useState<Product[]>([]);
 
   const addToCart = (product: Product) => {
     setCart(prev => {
@@ -80,6 +86,21 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     });
   };
 
+  const addToWishlist = (product: Product) => {
+    setWishlist(prev => {
+      if (prev.find(p => p.id === product.id)) return prev;
+      return [...prev, product];
+    });
+  };
+
+  const removeFromWishlist = (productId: string) => {
+    setWishlist(prev => prev.filter(p => p.id !== productId));
+  };
+
+  const isInWishlist = (productId: string) => {
+    return wishlist.some(p => p.id === productId);
+  };
+
   return (
     <CartContext.Provider
       value={{
@@ -92,6 +113,10 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         totalPrice,
         recentlyViewed,
         addToRecentlyViewed,
+        wishlist,
+        addToWishlist,
+        removeFromWishlist,
+        isInWishlist,
       }}
     >
       {children}

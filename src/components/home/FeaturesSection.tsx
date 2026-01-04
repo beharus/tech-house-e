@@ -9,75 +9,83 @@ const FeaturesSection = () => {
       icon: Truck,
       titleKey: 'freeDelivery',
       descKey: 'freeDeliveryDesc',
-      gradient: 'from-primary/20 to-chart-1/20',
-      iconColor: 'text-primary',
+      gradientFrom: 'from-violet-500',
+      gradientTo: 'to-purple-600',
+      bgGradient: 'from-violet-500/10 to-purple-600/10',
     },
     {
       icon: Shield,
       titleKey: 'warranty',
       descKey: 'warrantyDesc',
-      gradient: 'from-chart-2/20 to-chart-3/20',
-      iconColor: 'text-chart-2',
+      gradientFrom: 'from-blue-500',
+      gradientTo: 'to-indigo-600',
+      bgGradient: 'from-blue-500/10 to-indigo-600/10',
     },
     {
       icon: CreditCard,
       titleKey: 'installment',
       descKey: 'installmentDesc',
-      gradient: 'from-chart-3/20 to-chart-4/20',
-      iconColor: 'text-chart-3',
+      gradientFrom: 'from-emerald-500',
+      gradientTo: 'to-teal-600',
+      bgGradient: 'from-emerald-500/10 to-teal-600/10',
     },
     {
       icon: Headphones,
       titleKey: 'support',
       descKey: 'supportDesc',
-      gradient: 'from-chart-4/20 to-primary/20',
-      iconColor: 'text-chart-4',
+      gradientFrom: 'from-orange-500',
+      gradientTo: 'to-amber-600',
+      bgGradient: 'from-orange-500/10 to-amber-600/10',
     },
     {
       icon: RotateCcw,
       titleKey: 'easyReturns',
       descKey: 'easyReturnsDesc',
-      gradient: 'from-primary/20 to-chart-2/20',
-      iconColor: 'text-primary',
+      gradientFrom: 'from-pink-500',
+      gradientTo: 'to-rose-600',
+      bgGradient: 'from-pink-500/10 to-rose-600/10',
     },
     {
       icon: Medal,
       titleKey: 'qualityGuarantee',
       descKey: 'qualityGuaranteeDesc',
-      gradient: 'from-chart-1/20 to-chart-2/20',
-      iconColor: 'text-chart-1',
+      gradientFrom: 'from-cyan-500',
+      gradientTo: 'to-sky-600',
+      bgGradient: 'from-cyan-500/10 to-sky-600/10',
     },
   ];
 
   return (
-    <section className="container py-16">
-      <div className="text-center mb-12">
-        <h2 className="text-3xl font-bold mb-4">{t('whyChoose')}</h2>
-        <div className="w-20 h-1 bg-primary mx-auto rounded-full" />
+    <section className="container py-8 md:py-12 lg:py-16">
+      <div className="text-center mb-8 md:mb-12">
+        <h2 className="text-xl md:text-2xl lg:text-3xl font-bold mb-4">{t('whyChoose')}</h2>
+        <div className="w-16 md:w-20 h-1 bg-gradient-to-r from-primary to-primary/60 mx-auto rounded-full" />
       </div>
       
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
         {features.map((feature, index) => (
           <div
             key={feature.titleKey}
-            className="group relative overflow-hidden rounded-2xl bg-card p-8 transition-all duration-300 hover:shadow-xl"
+            className="group relative overflow-hidden rounded-xl md:rounded-2xl bg-card p-5 md:p-6 lg:p-8 transition-all duration-300 hover:shadow-xl border border-border/50 hover:border-primary/20"
             style={{ animationDelay: `${index * 100}ms` }}
           >
-            {/* Gradient background */}
-            <div className={`absolute inset-0 bg-gradient-to-br ${feature.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
+            {/* Gradient background on hover - using inline style for dynamic gradient */}
+            <div 
+              className={`absolute inset-0 bg-gradient-to-br ${feature.bgGradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
+            />
             
             {/* Content */}
             <div className="relative z-10">
-              <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${feature.gradient} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                <feature.icon className={`h-8 w-8 ${feature.iconColor}`} />
+              <div className={`w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 rounded-xl md:rounded-2xl bg-gradient-to-br ${feature.gradientFrom} ${feature.gradientTo} flex items-center justify-center mb-4 md:mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
+                <feature.icon className="h-6 w-6 md:h-7 md:w-7 lg:h-8 lg:w-8 text-white" />
               </div>
               
-              <h3 className="text-lg font-semibold mb-3">{t(feature.titleKey)}</h3>
-              <p className="text-muted-foreground leading-relaxed">{t(feature.descKey)}</p>
+              <h3 className="text-base md:text-lg font-semibold mb-2 md:mb-3">{t(feature.titleKey)}</h3>
+              <p className="text-sm md:text-base text-muted-foreground leading-relaxed">{t(feature.descKey)}</p>
             </div>
 
             {/* Decorative element */}
-            <div className="absolute -bottom-4 -right-4 w-24 h-24 rounded-full bg-primary/5 group-hover:scale-150 transition-transform duration-500" />
+            <div className={`absolute -bottom-4 -right-4 w-20 md:w-24 h-20 md:h-24 rounded-full bg-gradient-to-br ${feature.gradientFrom} ${feature.gradientTo} opacity-5 group-hover:scale-150 group-hover:opacity-10 transition-all duration-500`} />
           </div>
         ))}
       </div>
