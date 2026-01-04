@@ -1,12 +1,14 @@
 import { useState, useMemo } from 'react';
-import { useSearchParams } from 'react-router-dom';
-import { SlidersHorizontal, Grid3X3, List, ChevronDown, ChevronUp, X } from 'lucide-react';
+import { useSearchParams, Link } from 'react-router-dom';
+import { SlidersHorizontal, Grid3X3, List, ChevronDown, ChevronUp, X, Star, ShoppingCart } from 'lucide-react';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import ProductCard from '@/components/products/ProductCard';
 import Breadcrumbs from '@/components/Breadcrumbs';
+import FloatingButtons from '@/components/FloatingButtons';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
+import { Badge } from '@/components/ui/badge';
 import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle } from '@/components/ui/sheet';
 import { Slider } from '@/components/ui/slider';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
@@ -19,6 +21,8 @@ import {
 } from '@/components/ui/select';
 import { products, categories, brands } from '@/data/products';
 import { useLanguage } from '@/context/LanguageContext';
+import { useCart } from '@/context/CartContext';
+import { toast } from '@/hooks/use-toast';
 
 const colors = [
   { id: 'black', name: 'Black', hex: '#000000' },
@@ -31,7 +35,8 @@ const colors = [
 
 const Products = () => {
   const [searchParams] = useSearchParams();
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  const { addToCart } = useCart();
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [sortBy, setSortBy] = useState('popular');
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
@@ -375,15 +380,98 @@ const Products = () => {
 
               {/* Products grid */}
               {filteredProducts.length > 0 ? (
-                <div className={`grid gap-3 md:gap-4 ${
-                  viewMode === 'grid' 
-                    ? 'grid-cols-2 md:grid-cols-3 xl:grid-cols-4' 
-                    : 'grid-cols-1'
-                }`}>
-                  {filteredProducts.map(product => (
-                    <ProductCard key={product.id} product={product} />
-                  ))}
-                </div>
+                viewMode === 'grid' ? (
+                  <div className="grid gap-3 md:gap-4 grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
+                    {filteredProducts.map(product => (
+                      <ProductCard key={product.id} product={product} />
+                    ))}
+                  </div>
+                ) : (
+                  <div className="space-y-3">
+                    {filteredProducts.map(product => {
+                      const monthlyPayment = Math.round((product.price * 1.15) / 12);
+                      return (
+                        <Link 
+                          key={product.id} 
+                          to={`/products/${product.id}`}
+                          className="flex gap-4 md:gap-6 bg-card rounded-xl border border-border/50 p-3 md:p-4 hover:shadow-lg hover:border-primary/20 transition-all group"
+                        >
+                          {/* Image - Fixed small size */}
+                          <div className="w-24 h-24 md:w-32 md:h-32 shrink-0 bg-muted/30 rounded-lg overflow-hidden">
+                            <img 
+                              src={product.image} 
+                              alt={product.name}
+                              className="w-full h-full object-contain p-2"
+                            />
+                          </div>
+                          
+                          {/* Content */}
+                          <div className="flex-1 flex flex-col md:flex-row md:items-center gap-3 md:gap-6 min-w-0">
+                            {/* Product Info */}
+                            <div className="flex-1 min-w-0">
+                              {/* Installment Badge */}
+                              <Badge variant="outline" className="mb-2 text-[10px] bg-gradient-to-r from-blue-500/10 to-cyan-500/10 border-blue-500/20">
+                                {formatPrice(monthlyPayment)} / {language === 'ru' ? 'мес' : language === 'uz' ? 'oy' : 'mo'}
+                              </Badge>
+                              
+                              <h3 className="font-medium text-sm md:text-base line-clamp-2 group-hover:text-primary transition-colors mb-1">
+                                {product.name}
+                              </h3>
+                              
+                              {/* Rating */}
+                              <div className="flex items-center gap-1 text-muted-foreground">
+                                <Star className="h-3 w-3 fill-amber-400 text-amber-400" />
+                                <span className="text-xs">{product.rating}</span>
+                                <span className="text-xs">({product.reviews} {t('reviews') || 'reviews'})</span>
+                              </div>
+                              
+                              {/* Specs preview */}
+                              {product.description && (
+                                <p className="text-xs text-muted-foreground mt-2 line-clamp-1 hidden md:block">
+                                  {product.description}
+                                </p>
+                              )}
+                            </div>
+                            
+                            {/* Price & Action */}
+                            <div className="flex items-center justify-between md:flex-col md:items-end gap-2 md:gap-3 shrink-0">
+                              <div className="text-right">
+                                <div className="text-lg md:text-xl font-bold text-foreground">
+                                  {formatPrice(product.price)}
+                                  <span className="text-xs font-normal text-muted-foreground ml-1">
+                                    {language === 'en' ? 'sum' : language === 'ru' ? 'сум' : "so'm"}
+                                  </span>
+                                </div>
+                                {product.originalPrice && (
+                                  <span className="text-xs text-muted-foreground line-through">
+                                    {formatPrice(product.originalPrice)}
+                                  </span>
+                                )}
+                              </div>
+                              
+                              <Button
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  addToCart(product);
+                                  toast({
+                                    title: language === 'ru' ? 'Добавлено в корзину' : language === 'uz' ? 'Savatga qo\'shildi' : 'Added to cart',
+                                    className: "border-l-4 border-l-primary",
+                                  });
+                                }}
+                                variant="outline"
+                                size="sm"
+                                className="gap-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground whitespace-nowrap"
+                              >
+                                <ShoppingCart className="h-4 w-4" />
+                                <span className="hidden sm:inline">{t('addToCart') || 'Add to Cart'}</span>
+                              </Button>
+                            </div>
+                          </div>
+                        </Link>
+                      );
+                    })}
+                  </div>
+                )
               ) : (
                 <div className="text-center py-12">
                   <p className="text-muted-foreground text-lg">{t('noProductsFound') || 'No products found'}</p>
@@ -397,9 +485,11 @@ const Products = () => {
         </div>
       </main>
 
+      <FloatingButtons />
       <Footer />
     </div>
   );
 };
+
 
 export default Products;

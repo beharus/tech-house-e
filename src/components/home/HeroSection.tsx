@@ -168,7 +168,7 @@ const HeroSection = () => {
     <section className="container py-4 md:py-6 pt-[140px] md:pt-[160px] lg:pt-[180px]">
       <div className="grid lg:grid-cols-3 gap-4 md:gap-6 items-stretch">
         {/* --- Main Slider --- */}
-        <div className="lg:col-span-2 relative rounded-xl md:rounded-2xl overflow-hidden aspect-[16/9] lg:aspect-[2/1] shadow-md group/slider">
+        <div className="lg:col-span-2 relative rounded-xl md:rounded-2xl overflow-hidden h-[280px] sm:h-[320px] md:h-[380px] lg:h-[420px] shadow-md group/slider">
           <div className="relative w-full h-full">
             {slides.map((slide, index) => (
               <div
@@ -245,7 +245,7 @@ const HeroSection = () => {
         </div>
 
         {/* --- Flash Deals (Responsive Fix & New Pagination) --- */}
-        <div className="bg-gradient-to-br from-card to-card/90 rounded-xl md:rounded-2xl shadow-xl border border-border/40 overflow-hidden flex flex-col h-full min-h-[380px] md:min-h-[420px] lg:min-h-0">
+        <div className="bg-gradient-to-br from-card to-card/90 rounded-xl md:rounded-2xl shadow-xl border border-border/40 overflow-hidden flex flex-col h-[280px] sm:h-[320px] md:h-[380px] lg:h-[420px]">
           {/* Header */}
           <div className="relative bg-gradient-to-r from-primary via-primary/90 to-primary/80 px-4 py-4 shrink-0">
             <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-white/10 to-transparent rounded-full -translate-y-16 translate-x-8" />

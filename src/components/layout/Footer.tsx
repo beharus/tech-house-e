@@ -12,10 +12,19 @@ const Footer = () => {
           {/* Company info */}
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-10 h-10 rounded-lg bg-primary-foreground flex items-center justify-center">
-                <span className="text-primary font-bold text-lg">TH</span>
-              </div>
-              <span className="text-xl font-bold">Tech House</span>
+              <svg viewBox="0 0 50 50" className="w-10 h-10 shrink-0">
+                <defs>
+                  <linearGradient id="footerLogoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="hsl(var(--primary-foreground))" />
+                    <stop offset="100%" stopColor="hsl(var(--primary-foreground) / 0.8)" />
+                  </linearGradient>
+                </defs>
+                <path d="M8 8 L42 8 L42 16 L29 16 L29 42 L21 42 L21 16 L8 16 Z" fill="url(#footerLogoGradient)" />
+                <path d="M25 24 L40 42 L32 42 L25 32 Z" fill="url(#footerLogoGradient)" />
+              </svg>
+              <span className="text-xl font-bold">
+                <span className="opacity-90">ech</span>House
+              </span>
             </div>
             <p className="text-primary-foreground/80 mb-4">
               {t('companyInfo')}

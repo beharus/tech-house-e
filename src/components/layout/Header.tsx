@@ -229,11 +229,18 @@ const Header = () => {
 
           {/* Logo */}
           <Link to="/" className="flex items-center gap-1.5 md:gap-2 shrink-0">
-            <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center shadow-md">
-              <span className="text-primary-foreground font-bold text-sm md:text-lg">TH</span>
-            </div>
+            <svg viewBox="0 0 50 50" className="w-8 h-8 md:w-10 md:h-10 shrink-0">
+              <defs>
+                <linearGradient id="headerLogoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="hsl(var(--primary))" />
+                  <stop offset="100%" stopColor="hsl(var(--primary) / 0.7)" />
+                </linearGradient>
+              </defs>
+              <path d="M8 8 L42 8 L42 16 L29 16 L29 42 L21 42 L21 16 L8 16 Z" fill="url(#headerLogoGradient)" />
+              <path d="M25 24 L40 42 L32 42 L25 32 Z" fill="url(#headerLogoGradient)" />
+            </svg>
             <span className="hidden sm:block text-lg md:text-xl font-bold text-foreground">
-              Tech House
+              <span className="bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">ech</span>House
             </span>
           </Link>
 
@@ -343,9 +350,11 @@ const Header = () => {
               </Button>
             </Link>
 
-            <Button variant="ghost" size="icon" className="hidden sm:flex h-9 w-9 md:h-10 md:w-10">
-              <User className="h-4 w-4 md:h-5 md:w-5" />
-            </Button>
+            <Link to="/auth">
+              <Button variant="ghost" size="icon" className="hidden sm:flex h-9 w-9 md:h-10 md:w-10">
+                <User className="h-4 w-4 md:h-5 md:w-5" />
+              </Button>
+            </Link>
           </div>
         </div>
       </div>
