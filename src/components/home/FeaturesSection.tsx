@@ -76,8 +76,8 @@ const FeaturesSection = () => {
             
             {/* Content */}
             <div className="relative z-10">
-              <div className={`w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 rounded-xl md:rounded-2xl bg-gradient-to-br ${feature.gradientFrom} ${feature.gradientTo} flex items-center justify-center mb-4 md:mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
-                <feature.icon className="h-6 w-6 md:h-7 md:w-7 lg:h-8 lg:w-8 text-white" />
+              <div className={`w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 rounded-xl md:rounded-2xl bg-gradient-to-br ${feature.bgGradient} flex items-center justify-center mb-4 md:mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                <feature.icon className={`h-6 w-6 md:h-7 md:w-7 lg:h-8 lg:w-8 text-primary`} />
               </div>
               
               <h3 className="text-base md:text-lg font-semibold mb-2 md:mb-3">{t(feature.titleKey)}</h3>

@@ -210,12 +210,13 @@ const ProductCard = ({ product }: ProductCardProps) => {
               onClick={handleAddToCart}
               disabled={!product.inStock}
               size="icon"
+              variant="outline"
               className={cn(
-                "rounded-lg rounded-tl-2xl h-8 w-8 md:h-10 md:w-10 shadow-md border-2 border-primary bg-transparent text-primary transition-all duration-300 hover:bg-primary hover:text-primary-foreground active:scale-95",
+                "rounded-lg rounded-tl-2xl h-8 w-8 md:h-10 md:w-10 border-2 border-primary bg-transparent transition-all duration-300 hover:bg-primary hover:text-primary-foreground active:scale-95",
                 !product.inStock && "opacity-50 cursor-not-allowed"
               )}
             >
-              <ShoppingCart className="h-4 w-4 md:h-5 md:w-5" />
+              <ShoppingCart className="h-4 w-4 md:h-5 md:w-5 text-primary group-hover:text-primary-foreground" />
             </Button>
           </div>
         </div>
