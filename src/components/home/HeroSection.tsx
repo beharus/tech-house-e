@@ -166,9 +166,8 @@ const HeroSection = () => {
 
   return (
     <section className="container py-4 md:py-6 pt-[140px] md:pt-[160px] lg:pt-[180px]">
-      <div className="grid lg:grid-cols-3 gap-4 md:gap-6 items-stretch">
-        {/* --- Main Slider --- */}
-        <div className="lg:col-span-2 relative rounded-xl md:rounded-2xl overflow-hidden h-[280px] sm:h-[320px] md:h-[380px] lg:h-[420px] shadow-md group/slider">
+      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4 lg:gap-6">
+        <div className="lg:col-span-1 xl:col-span-2 relative rounded-xl md:rounded-2xl overflow-hidden h-[280px] sm:h-[320px] md:h-[380px] lg:h-[420px] shadow-md group/slider">
           <div className="relative w-full h-full">
             {slides.map((slide, index) => (
               <div
@@ -244,14 +243,13 @@ const HeroSection = () => {
           </div>
         </div>
 
-        {/* --- Flash Deals (Responsive Fix & New Pagination) --- */}
-        <div className="bg-gradient-to-br from-card to-card/90 rounded-xl md:rounded-2xl shadow-xl border border-border/40 overflow-hidden flex flex-col h-[280px] sm:h-[320px] md:h-[380px] lg:h-[420px]">
+        <div className="lg:col-span-1 xl:col-span-1 bg-gradient-to-br from-card to-card/90 rounded-xl md:rounded-2xl shadow-xl border border-border/40 overflow-hidden flex flex-col max-h-[420px]">
           {/* Header */}
           <div className="relative bg-gradient-to-r from-primary via-primary/90 to-primary/80 px-4 py-4 shrink-0">
             <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-white/10 to-transparent rounded-full -translate-y-16 translate-x-8" />
             <div className="relative z-10 flex flex-wrap gap-y-3 items-center justify-between">
               <div className="flex items-center gap-2">
-                <div className="p-1.5 bg-white/20 backdrop-blur-sm rounded-lg animate-pulse">
+                <div className=" hidden sm:block p-1.5 bg-white/20 backdrop-blur-sm rounded-lg animate-pulse">
                   <Zap className="w-5 h-5 text-white fill-white" />
                 </div>
                 <div>
@@ -296,32 +294,26 @@ const HeroSection = () => {
             </div>
           </div>
 
-          {/* Product Content - Responsive Grid */}
           {currentDeal && (
-            <div className="flex-1 flex flex-col p-4 md:p-5 relative">
+            <div className="flex-1 flex flex-col p-4 md:p-5 relative overflow-hidden">
               <Link
                 to={`/products/${currentDeal.id}`}
-                className="flex-1 flex flex-col sm:flex-row lg:flex-row gap-4 sm:gap-6 group"
+                className="flex-1 flex flex-col sm:flex-row gap-4 sm:gap-6 group overflow-hidden"
               >
-                {/* Image Section: 
-                    - Mobile: Full width
-                    - Tablet/Desktop: 40% width fixed
-                */}
-                <div className="relative w-full sm:w-[40%] aspect-[4/3] sm:aspect-square lg:aspect-auto lg:h-auto bg-gradient-to-br from-muted/30 to-muted/10 rounded-xl p-4 flex items-center justify-center overflow-hidden border border-border/20 group-hover:border-primary/30 transition-all">
+                <div className="relative w-[45%] lg:w-[40%] aspect-[4/3] sm:aspect-square bg-gradient-to-br from-muted/30 to-muted/10 rounded-xl p-4 flex items-center justify-center overflow-hidden border border-border/20 group-hover:border-primary/30 transition-all">
                   <div className="absolute inset-0 bg-gradient-to-tr from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                   <img
                     src={currentDeal.image}
                     alt={currentDeal.name}
-                    className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500 max-h-[180px] sm:max-h-[200px] md:max-h-[220px]"
                   />
                   <Badge className="absolute top-2 left-2 bg-gradient-to-r from-red-500 to-orange-500 text-white border-0 shadow-sm px-2 py-0.5 text-[10px] sm:text-xs font-bold w-fit">
                     -{currentDeal.discount}%
                   </Badge>
                 </div>
-
-                {/* Details Section */}
-                <div className="flex-1 flex flex-col justify-between min-w-0">
-                  <div>
+                {/* Details Section - Prevent overflow */}
+                <div className="flex-1 flex flex-col justify-between min-w-0 overflow-hidden">
+                  <div className="overflow-hidden">
                     {/* Title */}
                     <h4 className="font-bold text-base sm:text-lg leading-snug line-clamp-2 group-hover:text-primary transition-colors mb-2">
                       {currentDeal.name}
@@ -342,7 +334,7 @@ const HeroSection = () => {
                     </div>
                   </div>
 
-                  {/* Price & Action */}
+                  {/* Price & Action - At the bottom */}
                   <div className="space-y-4 mt-auto">
                     <div className="flex flex-col-reverse flex-wrap items-baseline gap-2">
                       <span className="text-xl sm:text-2xl font-bold text-primary">
@@ -382,7 +374,7 @@ const HeroSection = () => {
                 </div>
               </Link>
 
-              {/* Footer: Pagination (Dots) & Controls */}
+              {/* Footer: Pagination & Controls */}
               <div className="flex items-center justify-between pt-4 mt-2 border-t border-border/40">
                 {/* Custom Dot Pagination */}
                 <div className="flex items-center gap-1.5">

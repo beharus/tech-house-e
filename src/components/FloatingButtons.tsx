@@ -40,7 +40,7 @@ const FloatingButtons = () => {
       {/* Message button */}
       <button
         onClick={handleMessage}
-        className="w-12 h-12 rounded-full bg-gradient-to-r from-primary to-primary/80 shadow-lg shadow-primary/30 flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-xl hover:shadow-primary/40"
+        className="w-12 h-12 rounded-full bg-gradient-to-r from-primary to-primary/80 shadow-lg shadow-white/40 border border-violet-600 flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-xl hover:shadow-primary/40"
         aria-label="Message us"
       >
         <MessageCircle className="h-5 w-5 text-primary-foreground fill-primary-foreground" />

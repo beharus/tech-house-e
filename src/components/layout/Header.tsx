@@ -1,67 +1,108 @@
-import { useState, useEffect, useRef } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { Search, ShoppingCart, User, Menu, Heart, ChevronDown, Phone, MapPin, X, Globe, ChevronRight } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
-import { useCart } from '@/context/CartContext';
-import { useLanguage, Language } from '@/context/LanguageContext';
-import { categories } from '@/data/products';
+import { useState, useEffect, useRef } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import {
+  Search,
+  ShoppingCart,
+  User,
+  Menu,
+  Heart,
+  ChevronDown,
+  Phone,
+  MapPin,
+  X,
+  Globe,
+  ChevronRight,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { useCart } from "@/context/CartContext";
+import { useLanguage, Language } from "@/context/LanguageContext";
+import { categories } from "@/data/products";
 
-const searchPlaceholders = ['searchPhone', 'searchFridge', 'searchTV', 'searchLaptop', 'searchHeadphones'];
+const searchPlaceholders = [
+  "searchPhone",
+  "searchFridge",
+  "searchTV",
+  "searchLaptop",
+  "searchHeadphones",
+];
 
 const languages: { code: Language; name: string; flag: string }[] = [
-  { code: 'uz', name: "O'zbekcha", flag: '🇺🇿' },
-  { code: 'ru', name: 'Русский', flag: '🇷🇺' },
-  { code: 'en', name: 'English', flag: '🇬🇧' },
+  { code: "uz", name: "O'zbekcha", flag: "🇺🇿" },
+  { code: "ru", name: "Русский", flag: "🇷🇺" },
+  { code: "en", name: "English", flag: "🇬🇧" },
 ];
 
 // Mega menu subcategories
 const megaMenuData: Record<string, { title: string; items: string[] }[]> = {
-  'smart-home': [
-    { title: 'Smart Speakers', items: ['Yandex Station', 'Amazon Echo', 'Google Home', 'HomePod'] },
-    { title: 'Smart Lighting', items: ['Philips Hue', 'Xiaomi Mi', 'IKEA Tradfri'] },
-    { title: 'Security', items: ['Cameras', 'Sensors', 'Smart Locks'] },
+  "smart-home": [
+    {
+      title: "Smart Speakers",
+      items: ["Yandex Station", "Amazon Echo", "Google Home", "HomePod"],
+    },
+    {
+      title: "Smart Lighting",
+      items: ["Philips Hue", "Xiaomi Mi", "IKEA Tradfri"],
+    },
+    { title: "Security", items: ["Cameras", "Sensors", "Smart Locks"] },
   ],
-  'kitchen': [
-    { title: 'Cooking', items: ['Ovens', 'Cooktops', 'Microwaves', 'Air Fryers'] },
-    { title: 'Coffee & Tea', items: ['Espresso Machines', 'Coffee Makers', 'Kettles'] },
-    { title: 'Food Prep', items: ['Blenders', 'Mixers', 'Food Processors'] },
+  kitchen: [
+    {
+      title: "Cooking",
+      items: ["Ovens", "Cooktops", "Microwaves", "Air Fryers"],
+    },
+    {
+      title: "Coffee & Tea",
+      items: ["Espresso Machines", "Coffee Makers", "Kettles"],
+    },
+    { title: "Food Prep", items: ["Blenders", "Mixers", "Food Processors"] },
   ],
-  'cleaning': [
-    { title: 'Vacuums', items: ['Robot Vacuums', 'Cordless', 'Handheld'] },
-    { title: 'Floor Care', items: ['Steam Mops', 'Carpet Cleaners'] },
-    { title: 'Air Care', items: ['Humidifiers', 'Air Purifiers'] },
+  cleaning: [
+    { title: "Vacuums", items: ["Robot Vacuums", "Cordless", "Handheld"] },
+    { title: "Floor Care", items: ["Steam Mops", "Carpet Cleaners"] },
+    { title: "Air Care", items: ["Humidifiers", "Air Purifiers"] },
   ],
-  'climate': [
-    { title: 'Cooling', items: ['Air Conditioners', 'Fans', 'Portable AC'] },
-    { title: 'Heating', items: ['Heaters', 'Radiators', 'Heat Pumps'] },
-    { title: 'Air Quality', items: ['Purifiers', 'Humidifiers', 'Dehumidifiers'] },
+  climate: [
+    { title: "Cooling", items: ["Air Conditioners", "Fans", "Portable AC"] },
+    { title: "Heating", items: ["Heaters", "Radiators", "Heat Pumps"] },
+    {
+      title: "Air Quality",
+      items: ["Purifiers", "Humidifiers", "Dehumidifiers"],
+    },
   ],
-  'electronics': [
-    { title: 'TV & Video', items: ['Smart TVs', 'Projectors', 'Streaming Devices'] },
-    { title: 'Audio', items: ['Headphones', 'Speakers', 'Soundbars'] },
-    { title: 'Phones', items: ['Smartphones', 'Accessories', 'Chargers'] },
+  electronics: [
+    {
+      title: "TV & Video",
+      items: ["Smart TVs", "Projectors", "Streaming Devices"],
+    },
+    { title: "Audio", items: ["Headphones", "Speakers", "Soundbars"] },
+    { title: "Phones", items: ["Smartphones", "Accessories", "Chargers"] },
   ],
-  'personal-care': [
-    { title: 'Hair Care', items: ['Hair Dryers', 'Straighteners', 'Curlers'] },
-    { title: 'Grooming', items: ['Shavers', 'Trimmers', 'Epilators'] },
-    { title: 'Health', items: ['Massagers', 'Scales', 'Blood Pressure'] },
+  "personal-care": [
+    { title: "Hair Care", items: ["Hair Dryers", "Straighteners", "Curlers"] },
+    { title: "Grooming", items: ["Shavers", "Trimmers", "Epilators"] },
+    { title: "Health", items: ["Massagers", "Scales", "Blood Pressure"] },
   ],
 };
 
 const Header = () => {
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
   const [showCatalog, setShowCatalog] = useState(false);
   const [hoveredCategory, setHoveredCategory] = useState<string | null>(null);
-  const [placeholder, setPlaceholder] = useState('');
+  const [placeholder, setPlaceholder] = useState("");
   const [isTyping, setIsTyping] = useState(true);
   const [placeholderIndex, setPlaceholderIndex] = useState(0);
   const [charIndex, setCharIndex] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
-  
+
   const { totalItems, wishlist } = useCart();
   const { t, language, setLanguage } = useLanguage();
   const navigate = useNavigate();
@@ -72,7 +113,7 @@ const Header = () => {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      
+
       if (currentScrollY < 10) {
         setIsVisible(true);
       } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
@@ -81,18 +122,18 @@ const Header = () => {
       } else if (currentScrollY < lastScrollY) {
         setIsVisible(true);
       }
-      
+
       setLastScrollY(currentScrollY);
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
 
   // Typing animation for search placeholder
   useEffect(() => {
     const currentPlaceholder = t(searchPlaceholders[placeholderIndex]);
-    
+
     if (isTyping) {
       if (charIndex < currentPlaceholder.length) {
         const timeout = setTimeout(() => {
@@ -123,12 +164,15 @@ const Header = () => {
   // Close catalog when clicking outside
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
-      if (catalogRef.current && !catalogRef.current.contains(e.target as Node)) {
+      if (
+        catalogRef.current &&
+        !catalogRef.current.contains(e.target as Node)
+      ) {
         setShowCatalog(false);
       }
     };
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   const handleSearch = (e: React.FormEvent) => {
@@ -139,23 +183,23 @@ const Header = () => {
   };
 
   const getCategoryTranslation = (name: string) => {
-    const translationKey = name.toLowerCase().replace(/\s+/g, '');
+    const translationKey = name.toLowerCase().replace(/\s+/g, "");
     const keyMap: { [key: string]: string } = {
-      'smarthome': 'smartHome',
-      'kitchen': 'kitchen',
-      'cleaning': 'cleaning',
-      'climate': 'climate',
-      'electronics': 'electronics',
-      'personalcare': 'personalCare',
+      smarthome: "smartHome",
+      kitchen: "kitchen",
+      cleaning: "cleaning",
+      climate: "climate",
+      electronics: "electronics",
+      personalcare: "personalCare",
     };
     return t(keyMap[translationKey] || name);
   };
 
   return (
-    <header 
+    <header
       ref={headerRef}
       className={`fixed top-0 left-0 right-0 z-50 bg-card shadow-sm transition-transform duration-300 ${
-        isVisible ? 'translate-y-0' : '-translate-y-full'
+        isVisible ? "translate-y-0" : "-translate-y-full"
       }`}
     >
       {/* Top bar */}
@@ -172,17 +216,23 @@ const Header = () => {
             </span>
           </div>
           <div className="flex items-center gap-2 md:gap-4">
-            <Link to="/stores" className="hover:opacity-80 transition-opacity hidden sm:block">
-              {t('ourStores')}
+            <Link
+              to="/stores"
+              className="hover:opacity-80 transition-opacity hidden sm:block"
+            >
+              {t("ourStores")}
             </Link>
-            <Link to="/delivery" className="hover:opacity-80 transition-opacity hidden sm:block">
-              {t('delivery')}
+            <Link
+              to="/delivery"
+              className="hover:opacity-80 transition-opacity hidden sm:block"
+            >
+              {t("delivery")}
             </Link>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <button className="flex items-center gap-1 hover:opacity-80 transition-opacity">
                   <Globe className="h-3 w-3" />
-                  {languages.find(l => l.code === language)?.flag}
+                  {languages.find((l) => l.code === language)?.flag}
                 </button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
@@ -214,7 +264,7 @@ const Header = () => {
             </SheetTrigger>
             <SheetContent side="left" className="w-80">
               <nav className="flex flex-col gap-4 mt-8">
-                {categories.map(cat => (
+                {categories.map((cat) => (
                   <Link
                     key={cat.id}
                     to={`/products?category=${cat.id}`}
@@ -229,18 +279,23 @@ const Header = () => {
 
           {/* Logo */}
           <Link to="/" className="flex items-center gap-1.5 md:gap-2 shrink-0">
-            <svg viewBox="0 0 50 50" className="w-8 h-8 md:w-10 md:h-10 shrink-0">
-              <defs>
-                <linearGradient id="headerLogoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="hsl(var(--primary))" />
-                  <stop offset="100%" stopColor="hsl(var(--primary) / 0.7)" />
-                </linearGradient>
-              </defs>
-              <path d="M8 8 L42 8 L42 16 L29 16 L29 42 L21 42 L21 16 L8 16 Z" fill="url(#headerLogoGradient)" />
-              <path d="M25 24 L40 42 L32 42 L25 32 Z" fill="url(#headerLogoGradient)" />
+            <svg
+              width="25"
+              height="42"
+              viewBox="0 0 324 449"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M0 0H324V60L0 148V0Z" fill="#6c28d9" />
+              <path
+                d="M166 106.463L290 217L78 448.463L166 106.463Z"
+                fill="#8b5cf6"
+              />
             </svg>
-            <span className="hidden sm:block text-lg md:text-xl font-bold text-foreground">
-              <span className="bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">ech</span>House
+
+            <span className="hidden -ml-1 sm:block text-lg md:text-xl font-bold text-foreground">
+              ech
+              House
             </span>
           </Link>
 
@@ -250,9 +305,17 @@ const Header = () => {
               onClick={() => setShowCatalog(!showCatalog)}
               className="gap-2 bg-gradient-to-r from-primary to-primary/90"
             >
-              {showCatalog ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
-              {t('catalog')}
-              <ChevronDown className={`h-4 w-4 transition-transform ${showCatalog ? 'rotate-180' : ''}`} />
+              {showCatalog ? (
+                <X className="h-4 w-4" />
+              ) : (
+                <Menu className="h-4 w-4" />
+              )}
+              {t("catalog")}
+              <ChevronDown
+                className={`h-4 w-4 transition-transform ${
+                  showCatalog ? "rotate-180" : ""
+                }`}
+              />
             </Button>
 
             {/* Mega Menu */}
@@ -260,45 +323,57 @@ const Header = () => {
               <div className="absolute top-full left-0 mt-2 bg-card rounded-xl shadow-2xl border border-border overflow-hidden z-50 flex min-w-[700px]">
                 {/* Categories List */}
                 <div className="w-64 bg-muted/30 border-r border-border">
-                  {categories.filter(c => c.id !== 'all').map(cat => (
-                    <Link
-                      key={cat.id}
-                      to={`/products?category=${cat.id}`}
-                      onClick={() => setShowCatalog(false)}
-                      onMouseEnter={() => setHoveredCategory(cat.id)}
-                      className={`flex items-center justify-between px-4 py-3 hover:bg-primary/10 transition-colors ${
-                        hoveredCategory === cat.id ? 'bg-primary/10 text-primary' : ''
-                      }`}
-                    >
-                      <span className="font-medium">{getCategoryTranslation(cat.name)}</span>
-                      <ChevronRight className="h-4 w-4 text-muted-foreground" />
-                    </Link>
-                  ))}
+                  {categories
+                    .filter((c) => c.id !== "all")
+                    .map((cat) => (
+                      <Link
+                        key={cat.id}
+                        to={`/products?category=${cat.id}`}
+                        onClick={() => setShowCatalog(false)}
+                        onMouseEnter={() => setHoveredCategory(cat.id)}
+                        className={`flex items-center justify-between px-4 py-3 hover:bg-primary/10 transition-colors ${
+                          hoveredCategory === cat.id
+                            ? "bg-primary/10 text-primary"
+                            : ""
+                        }`}
+                      >
+                        <span className="font-medium">
+                          {getCategoryTranslation(cat.name)}
+                        </span>
+                        <ChevronRight className="h-4 w-4 text-muted-foreground" />
+                      </Link>
+                    ))}
                 </div>
 
                 {/* Subcategories */}
                 <div className="flex-1 p-6 grid grid-cols-3 gap-6">
-                  {hoveredCategory && megaMenuData[hoveredCategory]?.map((section, idx) => (
-                    <div key={idx}>
-                      <h4 className="font-semibold text-sm text-primary mb-3">{section.title}</h4>
-                      <ul className="space-y-2">
-                        {section.items.map((item, i) => (
-                          <li key={i}>
-                            <Link
-                              to={`/products?category=${hoveredCategory}&q=${item}`}
-                              onClick={() => setShowCatalog(false)}
-                              className="text-sm text-muted-foreground hover:text-primary transition-colors"
-                            >
-                              {item}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  ))}
+                  {hoveredCategory &&
+                    megaMenuData[hoveredCategory]?.map((section, idx) => (
+                      <div key={idx}>
+                        <h4 className="font-semibold text-sm text-primary mb-3">
+                          {section.title}
+                        </h4>
+                        <ul className="space-y-2">
+                          {section.items.map((item, i) => (
+                            <li key={i}>
+                              <Link
+                                to={`/products?category=${hoveredCategory}&q=${item}`}
+                                onClick={() => setShowCatalog(false)}
+                                className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                              >
+                                {item}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
                   {!hoveredCategory && (
                     <div className="col-span-3 flex items-center justify-center text-muted-foreground">
-                      <p>{t('hoverCategory') || 'Hover over a category to see items'}</p>
+                      <p>
+                        {t("hoverCategory") ||
+                          "Hover over a category to see items"}
+                      </p>
                     </div>
                   )}
                 </div>
@@ -311,7 +386,7 @@ const Header = () => {
             <div className="relative">
               <input
                 type="search"
-                placeholder={placeholder + '|'}
+                placeholder={placeholder + "|"}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full h-9 md:h-10 px-3 md:px-4 pr-10 md:pr-12 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/50"
@@ -329,7 +404,11 @@ const Header = () => {
           {/* Actions */}
           <div className="flex items-center gap-1 md:gap-2">
             <Link to="/wishlist" className="relative">
-              <Button variant="ghost" size="icon" className="h-9 w-9 md:h-10 md:w-10">
+              <Button
+                variant="ghost"
+                size="icon"
+                className="h-9 w-9 md:h-10 md:w-10"
+              >
                 <Heart className="h-4 w-4 md:h-5 md:w-5" />
                 {wishlist.length > 0 && (
                   <Badge className="absolute -top-1 -right-1 h-4 w-4 md:h-5 md:w-5 flex items-center justify-center p-0 text-[10px] md:text-xs bg-red-500">
@@ -338,9 +417,13 @@ const Header = () => {
                 )}
               </Button>
             </Link>
-            
+
             <Link to="/cart" className="relative">
-              <Button variant="ghost" size="icon" className="h-9 w-9 md:h-10 md:w-10">
+              <Button
+                variant="ghost"
+                size="icon"
+                className="h-9 w-9 md:h-10 md:w-10"
+              >
                 <ShoppingCart className="h-4 w-4 md:h-5 md:w-5" />
                 {totalItems > 0 && (
                   <Badge className="absolute -top-1 -right-1 h-4 w-4 md:h-5 md:w-5 flex items-center justify-center p-0 text-[10px] md:text-xs">
@@ -351,7 +434,11 @@ const Header = () => {
             </Link>
 
             <Link to="/auth">
-              <Button variant="ghost" size="icon" className="hidden sm:flex h-9 w-9 md:h-10 md:w-10">
+              <Button
+                variant="ghost"
+                size="icon"
+                className="hidden sm:flex h-9 w-9 md:h-10 md:w-10"
+              >
                 <User className="h-4 w-4 md:h-5 md:w-5" />
               </Button>
             </Link>
@@ -363,7 +450,7 @@ const Header = () => {
       <nav className="hidden lg:block border-t border-border">
         <div className="container">
           <ul className="flex items-center gap-4 md:gap-6 py-2 md:py-3">
-            {categories.slice(0, 6).map(cat => (
+            {categories.slice(0, 6).map((cat) => (
               <li key={cat.id}>
                 <Link
                   to={`/products?category=${cat.id}`}

@@ -3,7 +3,6 @@ import Footer from '@/components/layout/Footer';
 import HeroSection from '@/components/home/HeroSection';
 import CategoryCarousel from '@/components/home/CategoryCarousel';
 import ProductsSection from '@/components/home/ProductsSection';
-import BrandsSection from '@/components/home/BrandsSection';
 import FeaturesSection from '@/components/home/FeaturesSection';
 import FloatingButtons from '@/components/FloatingButtons';
 import { products } from '@/data/products';
@@ -37,7 +36,6 @@ const Index = () => {
           viewAllLink="/products?new=true"
         />
         
-        <BrandsSection />
         
         <ProductsSection
           title={t('bestSellers')}

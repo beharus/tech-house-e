@@ -9,21 +9,24 @@ const Footer = () => {
     <footer className="bg-primary text-primary-foreground">
       <div className="container py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {/* Company info */}
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <svg viewBox="0 0 50 50" className="w-10 h-10 shrink-0">
-                <defs>
-                  <linearGradient id="footerLogoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="hsl(var(--primary-foreground))" />
-                    <stop offset="100%" stopColor="hsl(var(--primary-foreground) / 0.8)" />
-                  </linearGradient>
-                </defs>
-                <path d="M8 8 L42 8 L42 16 L29 16 L29 42 L21 42 L21 16 L8 16 Z" fill="url(#footerLogoGradient)" />
-                <path d="M25 24 L40 42 L32 42 L25 32 Z" fill="url(#footerLogoGradient)" />
-              </svg>
-              <span className="text-xl font-bold">
-                <span className="opacity-90">ech</span>House
+              <svg
+              width="25"
+              height="42"
+              viewBox="0 0 324 449"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M0 0H324V60L0 148V0Z" fill="#ffffff" />
+              <path
+                d="M166 106.463L290 217L78 448.463L166 106.463Z"
+                fill="#8f5cf6"
+              />
+            </svg>
+              <span className="text-xl -ml-1 font-bold">
+                ech
+                House
               </span>
             </div>
             <p className="text-primary-foreground/80 mb-4">
@@ -107,12 +110,6 @@ const Footer = () => {
             </div>
             <div className="flex items-center justify-center h-7 md:h-8 px-2 md:px-3 bg-[#009FE3] rounded text-primary-foreground font-bold text-[10px] md:text-xs">
               Click
-            </div>
-            <div className="flex items-center justify-center h-7 md:h-8 px-2 md:px-3 bg-[#EE5C24] rounded text-white font-bold text-[10px] md:text-xs">
-              Oson
-            </div>
-            <div className="flex items-center justify-center h-7 md:h-8 px-2 md:px-3 bg-[#FFD700] rounded text-black font-bold text-[10px] md:text-xs">
-              APELSIN
             </div>
             <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa" className="h-5 md:h-6 opacity-80 invert" />
             <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard" className="h-5 md:h-6 opacity-80" />

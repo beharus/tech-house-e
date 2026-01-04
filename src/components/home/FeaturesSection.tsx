@@ -1,3 +1,4 @@
+import React from 'react';
 import { Truck, Shield, CreditCard, Headphones, RotateCcw, Medal } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 
@@ -5,87 +6,50 @@ const FeaturesSection = () => {
   const { t } = useLanguage();
 
   const features = [
-    {
-      icon: Truck,
-      titleKey: 'freeDelivery',
-      descKey: 'freeDeliveryDesc',
-      gradientFrom: 'from-violet-500',
-      gradientTo: 'to-purple-600',
-      bgGradient: 'from-violet-500/10 to-purple-600/10',
-    },
-    {
-      icon: Shield,
-      titleKey: 'warranty',
-      descKey: 'warrantyDesc',
-      gradientFrom: 'from-blue-500',
-      gradientTo: 'to-indigo-600',
-      bgGradient: 'from-blue-500/10 to-indigo-600/10',
-    },
-    {
-      icon: CreditCard,
-      titleKey: 'installment',
-      descKey: 'installmentDesc',
-      gradientFrom: 'from-emerald-500',
-      gradientTo: 'to-teal-600',
-      bgGradient: 'from-emerald-500/10 to-teal-600/10',
-    },
-    {
-      icon: Headphones,
-      titleKey: 'support',
-      descKey: 'supportDesc',
-      gradientFrom: 'from-orange-500',
-      gradientTo: 'to-amber-600',
-      bgGradient: 'from-orange-500/10 to-amber-600/10',
-    },
-    {
-      icon: RotateCcw,
-      titleKey: 'easyReturns',
-      descKey: 'easyReturnsDesc',
-      gradientFrom: 'from-pink-500',
-      gradientTo: 'to-rose-600',
-      bgGradient: 'from-pink-500/10 to-rose-600/10',
-    },
-    {
-      icon: Medal,
-      titleKey: 'qualityGuarantee',
-      descKey: 'qualityGuaranteeDesc',
-      gradientFrom: 'from-cyan-500',
-      gradientTo: 'to-sky-600',
-      bgGradient: 'from-cyan-500/10 to-sky-600/10',
-    },
+    { icon: Truck, titleKey: 'freeDelivery', descKey: 'freeDeliveryDesc' },
+    { icon: Shield, titleKey: 'warranty', descKey: 'warrantyDesc' },
+    { icon: CreditCard, titleKey: 'installment', descKey: 'installmentDesc' },
+    { icon: Headphones, titleKey: 'support', descKey: 'supportDesc' },
+    { icon: RotateCcw, titleKey: 'easyReturns', descKey: 'easyReturnsDesc' },
+    { icon: Medal, titleKey: 'qualityGuarantee', descKey: 'qualityGuaranteeDesc' },
   ];
 
   return (
-    <section className="container py-8 md:py-12 lg:py-16">
-      <div className="text-center mb-8 md:mb-12">
-        <h2 className="text-xl md:text-2xl lg:text-3xl font-bold mb-4">{t('whyChoose')}</h2>
-        <div className="w-16 md:w-20 h-1 bg-gradient-to-r from-primary to-primary/60 mx-auto rounded-full" />
+    <section className="container py-12 md:py-20 lg:py-24">
+      <div className="text-center mb-12 md:mb-16">
+        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 tracking-tight text-gray-900">{t('whyChoose')}</h2>
+        <div className="w-16 md:w-20 h-1.5 bg-violet-200 mx-auto rounded-full opacity-70" />
       </div>
       
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 px-4 md:px-0">
         {features.map((feature, index) => (
           <div
             key={feature.titleKey}
-            className="group relative overflow-hidden rounded-xl md:rounded-2xl bg-card p-5 md:p-6 lg:p-8 transition-all duration-300 hover:shadow-xl border border-border/50 hover:border-primary/20"
+            // Card base style: White background, subtle border.
+            // Hover style: Border becomes transparent, adds a soft lift shadow.
+            className="group relative overflow-hidden rounded-2xl md:rounded-[24px] bg-white p-6 lg:p-8 transition-all duration-500 ease-out hover:shadow-[0_8px_30px_rgb(139,92,246,0.15)] border border-gray-100 hover:border-transparent"
             style={{ animationDelay: `${index * 100}ms` }}
           >
-            {/* Gradient background on hover - using inline style for dynamic gradient */}
+            {/* 1. Card Main Hover Gradient (White to Violet) */}
             <div 
-              className={`absolute inset-0 bg-gradient-to-br ${feature.bgGradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
+              className="absolute inset-0 bg-gradient-to-br from-white via-white to-violet-100/90 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-out z-0"
             />
             
-            {/* Content */}
+            {/* Content Layer (z-10 to sit above backgrounds) */}
             <div className="relative z-10">
-              <div className={`w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 rounded-xl md:rounded-2xl bg-gradient-to-br ${feature.bgGradient} flex items-center justify-center mb-4 md:mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                <feature.icon className={`h-6 w-6 md:h-7 md:w-7 lg:h-8 lg:w-8 text-primary`} />
+              {/* 2. Icon Container with Gradient Background (Matching reference image) */}
+              {/* Using a soft gradient from purple-50 to violet-100 to get that specific look */}
+              <div className="w-14 h-14 md:w-16 md:h-16 rounded-2xl md:rounded-[20px] bg-gradient-to-br from-purple-50 to-violet-100 flex items-center justify-center mb-6 group-hover:scale-105 md:group-hover:scale-110 transition-transform duration-500 ease-out shadow-sm">
+                <feature.icon className="h-7 w-7 md:h-8 md:w-8 text-violet-600" strokeWidth={1.5} />
               </div>
               
-              <h3 className="text-base md:text-lg font-semibold mb-2 md:mb-3">{t(feature.titleKey)}</h3>
-              <p className="text-sm md:text-base text-muted-foreground leading-relaxed">{t(feature.descKey)}</p>
+              <h3 className="text-lg md:text-xl font-semibold mb-3 text-gray-900 group-hover:text-violet-900 transition-colors duration-300">{t(feature.titleKey)}</h3>
+              <p className="text-sm md:text-base text-gray-500 leading-relaxed group-hover:text-gray-600 transition-colors duration-300">{t(feature.descKey)}</p>
             </div>
 
-            {/* Decorative element */}
-            <div className={`absolute -bottom-4 -right-4 w-20 md:w-24 h-20 md:h-24 rounded-full bg-gradient-to-br ${feature.gradientFrom} ${feature.gradientTo} opacity-5 group-hover:scale-150 group-hover:opacity-10 transition-all duration-500`} />
+            {/* 3. Decorative Circle on Bottom Right */}
+            {/* Large, subtle circle that becomes slightly more defined on hover */}
+            <div className="absolute -bottom-8 -right-8 w-24 h-24 md:w-32 md:h-32 rounded-full bg-violet-100/50 blur-xl opacity-70 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700 ease-out z-0 pointer-events-none" />
           </div>
         ))}
       </div>
