@@ -76,7 +76,7 @@ const Checkout = () => {
     <div className="min-h-screen flex flex-col bg-background">
       <Header />
 
-      <main className="flex-1">
+      <main className="flex-1 py-[180px]">
         <div className="container py-6">
           {/* Back button */}
           <Link to="/cart" className="inline-flex items-center text-muted-foreground hover:text-primary mb-6">

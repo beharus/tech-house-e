@@ -16,7 +16,7 @@ const Cart = () => {
     return (
       <div className="min-h-screen flex flex-col bg-background">
         <Header />
-        <main className="flex-1 flex items-center justify-center">
+        <main className="flex-1 flex items-center justify-center pt-[180px]">
           <div className="text-center">
             <ShoppingBag className="h-24 w-24 text-muted-foreground mx-auto mb-6" />
             <h1 className="text-2xl font-bold mb-2">Your cart is empty</h1>
@@ -40,7 +40,7 @@ const Cart = () => {
     <div className="min-h-screen flex flex-col bg-background">
       <Header />
 
-      <main className="flex-1">
+      <main className="flex-1 pt-[180px]">
         <div className="container py-6">
           <h1 className="text-2xl font-bold mb-6">Shopping Cart ({totalItems} items)</h1>
 
@@ -72,14 +72,14 @@ const Cart = () => {
                       <div className="flex items-center border border-border rounded-lg">
                         <button
                           onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                          className="p-2 hover:bg-muted transition-colors"
+                          className="p-2 hover:bg-muted transition-colors rounded-l-lg"
                         >
                           <Minus className="h-4 w-4" />
                         </button>
                         <span className="w-10 text-center font-medium">{item.quantity}</span>
                         <button
                           onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                          className="p-2 hover:bg-muted transition-colors"
+                          className="p-2 hover:bg-muted transition-colors rounded-r-lg"
                         >
                           <Plus className="h-4 w-4" />
                         </button>

@@ -14,7 +14,7 @@ const searchPlaceholders = ['searchPhone', 'searchFridge', 'searchTV', 'searchLa
 const languages: { code: Language; name: string; flag: string }[] = [
   { code: 'uz', name: "O'zbekcha", flag: '🇺🇿' },
   { code: 'ru', name: 'Русский', flag: '🇷🇺' },
-  { code: 'en', name: 'English', flag: '🇬🇧' },
+  { code: 'en', name: 'English', flag: 'en' },
 ];
 
 const Header = () => {
@@ -156,7 +156,7 @@ const Header = () => {
 
       {/* Main header */}
       <div className="container py-4">
-        <div className="flex items-center gap-4">
+        <div className="flex items-center justify-between gap-4">
           {/* Mobile menu */}
           <Sheet>
             <SheetTrigger asChild className="lg:hidden">
