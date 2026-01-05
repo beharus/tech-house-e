@@ -1,4 +1,4 @@
-import { useState, useRef, useMemo } from "react";
+import { useState, useRef, useMemo, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Heart, ShoppingCart, Star, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -16,9 +16,30 @@ const formatPrice = (price: number) => {
   return new Intl.NumberFormat("uz-UZ").format(price);
 };
 
+const ProductCardSkeleton = () => (
+  <div className="relative h-full bg-card rounded-xl md:rounded-2xl overflow-hidden border border-border/50 animate-pulse">
+    <div className="aspect-square bg-muted/50" />
+    <div className="p-3 md:p-4 space-y-3">
+      <div className="h-4 bg-muted/50 rounded w-1/3" />
+      <div className="h-4 bg-muted/50 rounded w-full" />
+      <div className="h-4 bg-muted/50 rounded w-2/3" />
+      <div className="flex justify-between items-end">
+        <div className="space-y-1">
+          <div className="h-3 bg-muted/50 rounded w-16" />
+          <div className="h-5 bg-muted/50 rounded w-24" />
+        </div>
+        <div className="h-10 w-10 bg-muted/50 rounded" />
+      </div>
+    </div>
+  </div>
+);
+
+export { ProductCardSkeleton };
+
 const ProductCard = ({ product }: ProductCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [imageLoaded, setImageLoaded] = useState(false);
   const imageContainerRef = useRef<HTMLDivElement>(null);
 
   const {
@@ -37,6 +58,12 @@ const ProductCard = ({ product }: ProductCardProps) => {
     }
     return [product.image];
   }, [product.images, product.image]);
+
+  useEffect(() => {
+    const img = new Image();
+    img.src = productImages[0];
+    img.onload = () => setImageLoaded(true);
+  }, [productImages]);
 
   const monthlyPayment = Math.round((product.price * 1.15) / 12);
   const stockCount = product.stockCount ?? Math.floor(Math.random() * 50) + 5;
@@ -109,10 +136,19 @@ const ProductCard = ({ product }: ProductCardProps) => {
           className="relative aspect-square overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800"
           onMouseMove={handleMouseMove}
         >
+          {!imageLoaded && (
+            <div className="absolute inset-0 bg-muted/50 animate-pulse" />
+          )}
           <img
             src={productImages[currentImageIndex]}
             alt={product.name}
-            className="w-full h-full object-contain p-4 md:p-6"
+            loading="lazy"
+            decoding="async"
+            className={cn(
+              "w-full h-full object-contain p-4 md:p-6 transition-opacity duration-300",
+              imageLoaded ? "opacity-100" : "opacity-0"
+            )}
+            onLoad={() => setImageLoaded(true)}
           />
 
           <div className="absolute top-2 md:top-3 left-2 md:left-3 flex flex-col gap-1 z-10">
