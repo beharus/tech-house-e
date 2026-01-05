@@ -12,6 +12,7 @@ import {
   X,
   Globe,
   ChevronRight,
+  GitCompare,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -25,6 +26,7 @@ import {
 import { useCart } from "@/context/CartContext";
 import { useLanguage, Language } from "@/context/LanguageContext";
 import { categories } from "@/data/products";
+import SearchAutocomplete from "@/components/SearchAutocomplete";
 
 const searchPlaceholders = [
   "searchPhone",
@@ -385,28 +387,23 @@ const Header = () => {
             )}
           </div>
 
-          {/* Search */}
-          <form onSubmit={handleSearch} className="flex-1 max-w-xl">
-            <div className="relative">
-              <input
-                type="search"
-                placeholder={placeholder + "|"}
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full h-9 md:h-10 px-3 md:px-4 pr-10 md:pr-12 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/50"
-              />
-              <Button
-                type="submit"
-                size="icon"
-                className="absolute right-1 top-1/2 -translate-y-1/2 h-7 w-7 md:h-8 md:w-8"
-              >
-                <Search className="h-3.5 w-3.5 md:h-4 md:w-4" />
-              </Button>
-            </div>
-          </form>
+          <SearchAutocomplete
+            searchQuery={searchQuery}
+            setSearchQuery={setSearchQuery}
+            placeholder={placeholder}
+            onSearch={handleSearch}
+          />
 
-          {/* Actions */}
           <div className="flex items-center gap-1 md:gap-2">
+            <Link to="/compare" className="hidden sm:block">
+              <Button
+                variant="ghost"
+                size="icon"
+                className="h-9 w-9 md:h-10 md:w-10"
+              >
+                <GitCompare className="h-4 w-4 md:h-5 md:w-5" />
+              </Button>
+            </Link>
             <Link to="/wishlist" className="relative">
               <Button
                 variant="ghost"
@@ -437,7 +434,7 @@ const Header = () => {
               </Button>
             </Link>
 
-            <Link to="/auth">
+            <Link to="/profile">
               <Button
                 variant="ghost"
                 size="icon"
@@ -449,8 +446,6 @@ const Header = () => {
           </div>
         </div>
       </div>
-
-      {/* Categories nav - Desktop */}
       <nav className="hidden lg:block border-t border-border">
         <div className="container">
           <ul className="flex items-center gap-4 md:gap-6 py-2 md:py-3">
