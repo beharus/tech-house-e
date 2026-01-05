@@ -74,7 +74,7 @@ const Profile = () => {
   };
 
   const menuItems = [
-    { icon: Package, label: t('myOrders') || 'My Orders', count: mockOrders.length, href: '#orders' },
+    { icon: Package, label: t('myOrders') || 'My Orders', count: mockOrders.length, href: '/order-tracking' },
     { icon: Heart, label: t('wishlist') || 'Wishlist', count: wishlist.length, href: '/wishlist' },
     { icon: MapPin, label: t('addresses') || 'Addresses', count: mockAddresses.length, href: '#addresses' },
     { icon: CreditCard, label: t('paymentMethods') || 'Payment Methods', count: 2, href: '#payment' },

@@ -13,6 +13,8 @@ import {
   Globe,
   ChevronRight,
   GitCompare,
+  Package,
+  LogIn,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -219,10 +221,10 @@ const Header = () => {
           </div>
           <div className="flex items-center gap-2 md:gap-4">
             <Link
-              to="/stores"
+              to="/order-tracking"
               className="hover:opacity-80 transition-opacity hidden sm:block"
             >
-              {t("ourStores")}
+              {t("trackOrder") || "Track Order"}
             </Link>
             <Link
               to="/delivery"
@@ -434,15 +436,37 @@ const Header = () => {
               </Button>
             </Link>
 
-            <Link to="/profile">
-              <Button
-                variant="ghost"
-                size="icon"
-                className="hidden sm:flex h-9 w-9 md:h-10 md:w-10"
-              >
-                <User className="h-4 w-4 md:h-5 md:w-5" />
-              </Button>
-            </Link>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="hidden sm:flex h-9 w-9 md:h-10 md:w-10"
+                >
+                  <User className="h-4 w-4 md:h-5 md:w-5" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-48">
+                <DropdownMenuItem asChild>
+                  <Link to="/profile" className="flex items-center gap-2 cursor-pointer">
+                    <User className="h-4 w-4" />
+                    {t("profile") || "Profile"}
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/order-tracking" className="flex items-center gap-2 cursor-pointer">
+                    <Package className="h-4 w-4" />
+                    {t("trackOrder") || "Track Order"}
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/auth" className="flex items-center gap-2 cursor-pointer">
+                    <LogIn className="h-4 w-4" />
+                    {t("login") || "Login"}
+                  </Link>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
         </div>
       </div>
