@@ -11,20 +11,17 @@ interface Translations {
 }
 
 export const translations: Translations = {
-  // Header
   ourStores: { uz: 'Magazinlarimiz', ru: 'Наши магазины', en: 'Our Stores' },
   delivery: { uz: 'Yetkazib berish', ru: 'Доставка', en: 'Delivery' },
   catalog: { uz: 'Katalog', ru: 'Каталог', en: 'Catalog' },
   search: { uz: "Qidirish...", ru: 'Поиск...', en: 'Search...' },
   
-  // Search placeholders for animation
   searchPhone: { uz: 'Telefon', ru: 'Телефон', en: 'Phone' },
   searchFridge: { uz: 'Muzlatgich', ru: 'Холодильник', en: 'Fridge' },
   searchTV: { uz: 'Televizor', ru: 'Телевизор', en: 'TV' },
   searchLaptop: { uz: 'Noutbuk', ru: 'Ноутбук', en: 'Laptop' },
   searchHeadphones: { uz: "Quloqchinlar", ru: 'Наушники', en: 'Headphones' },
   
-  // Categories
   discounts: { uz: 'Aksiya va chegirmalar', ru: 'Акции и скидки', en: 'Sales & Discounts' },
   smartphones: { uz: 'Smartfonlar', ru: 'Смартфоны', en: 'Smartphones' },
   airConditioners: { uz: 'Konditsionerlar', ru: 'Кондиционеры', en: 'Air Conditioners' },
@@ -40,27 +37,24 @@ export const translations: Translations = {
   electronics: { uz: 'Elektronika', ru: 'Электроника', en: 'Electronics' },
   personalCare: { uz: 'Shaxsiy parvarish', ru: 'Личная гигиена', en: 'Personal Care' },
   
-  // Hero
   flashDeals: { uz: 'Kunning tovarlari', ru: 'Товары дня', en: 'Flash Deals' },
   viewAllDeals: { uz: 'Barcha aksiyalar', ru: 'Все акции', en: 'View All Deals' },
   shopNow: { uz: 'Xarid qilish', ru: 'Купить', en: 'Shop Now' },
   
-  // Product sections
   hotDeals: { uz: 'Aksiya mahsulotlari', ru: 'Горячие предложения', en: 'Hot Deals' },
   newArrivals: { uz: 'Yangi kelganlar', ru: 'Новинки', en: 'New Arrivals' },
   bestSellers: { uz: 'Eng ko\'p sotilganlar', ru: 'Хиты продаж', en: 'Best Sellers' },
   recentlyViewed: { uz: 'Yaqinda ko\'rilganlar', ru: 'Недавно просмотренные', en: 'Recently Viewed' },
   viewAll: { uz: 'Barchasi', ru: 'Смотреть все', en: 'View All' },
   
-  // Product card
   inStock: { uz: 'Mavjud', ru: 'В наличии', en: 'In Stock' },
   outOfStock: { uz: 'Mavjud emas', ru: 'Нет в наличии', en: 'Out of Stock' },
   addToCart: { uz: 'Savatga qo\'shish', ru: 'В корзину', en: 'Add to Cart' },
   new: { uz: 'Yangi', ru: 'Новинка', en: 'New' },
   discount: { uz: 'Chegirma', ru: 'Скидка', en: 'Discount' },
   perMonth: { uz: 'oyiga', ru: 'в месяц', en: '/month' },
+  monthly: { uz: '/ oyiga', ru: '/ мес', en: '/ mo' },
   
-  // Features section
   whyChoose: { uz: 'Nega aynan Tech House?', ru: 'Почему Tech House?', en: 'Why Choose Tech House?' },
   freeDelivery: { uz: 'Bepul yetkazib berish', ru: 'Бесплатная доставка', en: 'Free Delivery' },
   freeDeliveryDesc: { uz: '500 000 so\'mdan ortiq buyurtmalar uchun', ru: 'При заказе от 500 000 сум', en: 'On orders over 500,000 sum' },
@@ -75,7 +69,6 @@ export const translations: Translations = {
   qualityGuarantee: { uz: 'Sifat kafolati', ru: 'Гарантия качества', en: 'Quality Guarantee' },
   qualityGuaranteeDesc: { uz: '100% asl mahsulotlar', ru: '100% подлинные товары', en: '100% authentic products' },
   
-  // Footer
   companyInfo: { uz: 'Uy jihozlari va elektronika uchun ishonchli hamkoringiz.', ru: 'Ваш надежный партнер по бытовой технике и электронике.', en: 'Your trusted partner for quality household appliances and electronics.' },
   information: { uz: 'Ma\'lumot', ru: 'Информация', en: 'Information' },
   aboutUs: { uz: 'Biz haqimizda', ru: 'О нас', en: 'About Us' },
@@ -89,12 +82,10 @@ export const translations: Translations = {
   supportCenter: { uz: 'Qo\'llab-quvvatlash markazi', ru: 'Центр поддержки', en: 'Support Center' },
   allRightsReserved: { uz: 'Barcha huquqlar himoyalangan.', ru: 'Все права защищены.', en: 'All rights reserved.' },
   
-  // Breadcrumbs
   home: { uz: 'Bosh sahifa', ru: 'Главная', en: 'Home' },
   back: { uz: 'Orqaga', ru: 'Назад', en: 'Back' },
   products: { uz: 'Mahsulotlar', ru: 'Товары', en: 'Products' },
   
-  // Product detail
   description: { uz: 'Tavsif', ru: 'Описание', en: 'Description' },
   specifications: { uz: 'Xususiyatlar', ru: 'Характеристики', en: 'Specifications' },
   reviews: { uz: 'Sharhlar', ru: 'Отзывы', en: 'Reviews' },
@@ -112,21 +103,67 @@ export const translations: Translations = {
   similarProducts: { uz: 'O\'xshash mahsulotlar', ru: 'Похожие товары', en: 'Similar Products' },
   frequentlyBought: { uz: 'Bu tovar bilan birga sotib olinadi', ru: 'С этим товаром покупают', en: 'Frequently Bought Together' },
   
-  // Brands
   popularBrands: { uz: 'Mashhur brendlar', ru: 'Популярные бренды', en: 'Popular Brands' },
   
-  // Language popup
   selectLanguage: { uz: 'Tilni tanlang', ru: 'Выберите язык', en: 'Select Language' },
   
-  // Cart
   cart: { uz: 'Savat', ru: 'Корзина', en: 'Cart' },
   emptyCart: { uz: 'Savat bo\'sh', ru: 'Корзина пуста', en: 'Your cart is empty' },
   total: { uz: 'Jami', ru: 'Итого', en: 'Total' },
   checkout: { uz: 'Rasmiylashtirish', ru: 'Оформить заказ', en: 'Checkout' },
   continueShopping: { uz: 'Xaridni davom ettirish', ru: 'Продолжить покупки', en: 'Continue Shopping' },
   
-  // Stock
   pcsInStock: { uz: 'dona mavjud', ru: 'шт. в наличии', en: 'pcs in stock' },
+
+  backToHome: { uz: 'Bosh sahifaga qaytish', ru: 'Вернуться на главную', en: 'Back to Home' },
+  rememberMe: { uz: 'Meni eslab qol', ru: 'Запомнить меня', en: 'Remember me' },
+  forgotPassword: { uz: 'Parolni unutdingizmi?', ru: 'Забыли пароль?', en: 'Forgot password?' },
+  login: { uz: 'Kirish', ru: 'Вход', en: 'Login' },
+  register: { uz: 'Ro\'yxatdan o\'tish', ru: 'Регистрация', en: 'Register' },
+  email: { uz: 'Email', ru: 'Email', en: 'Email' },
+  password: { uz: 'Parol', ru: 'Пароль', en: 'Password' },
+  fullName: { uz: 'To\'liq ism', ru: 'Полное имя', en: 'Full Name' },
+  confirmPassword: { uz: 'Parolni tasdiqlang', ru: 'Подтвердите пароль', en: 'Confirm Password' },
+  loading: { uz: 'Yuklanmoqda...', ru: 'Загрузка...', en: 'Loading...' },
+  
+  wishlist: { uz: 'Sevimlilar', ru: 'Избранное', en: 'Wishlist' },
+  emptyWishlist: { uz: 'Sevimlilar ro\'yxati bo\'sh', ru: 'Список избранного пуст', en: 'Your wishlist is empty' },
+  addedToCart: { uz: 'Savatga qo\'shildi', ru: 'Добавлено в корзину', en: 'Added to cart' },
+  removedFromWishlist: { uz: 'Sevimlilardan olib tashlandi', ru: 'Удалено из избранного', en: 'Removed from wishlist' },
+  addedToWishlist: { uz: 'Sevimlilarga qo\'shildi', ru: 'Добавлено в избранное', en: 'Added to wishlist' },
+  moveToCart: { uz: 'Savatga ko\'chirish', ru: 'Переместить в корзину', en: 'Move to Cart' },
+  remove: { uz: 'O\'chirish', ru: 'Удалить', en: 'Remove' },
+  
+  hoverCategory: { uz: 'Elementlarni ko\'rish uchun kategoriyani tanlang', ru: 'Наведите на категорию для просмотра', en: 'Hover over a category to see items' },
+  
+  categories: { uz: 'Kategoriyalar', ru: 'Категории', en: 'Categories' },
+  filters: { uz: 'Filtrlar', ru: 'Фильтры', en: 'Filters' },
+  clearFilters: { uz: 'Filtrlarni tozalash', ru: 'Очистить фильтры', en: 'Clear Filters' },
+  priceRange: { uz: 'Narx oralig\'i', ru: 'Диапазон цен', en: 'Price Range' },
+  brands: { uz: 'Brendlar', ru: 'Бренды', en: 'Brands' },
+  colors: { uz: 'Ranglar', ru: 'Цвета', en: 'Colors' },
+  andUp: { uz: 'va yuqori', ru: 'и выше', en: '& up' },
+  productsFound: { uz: 'mahsulot topildi', ru: 'товаров найдено', en: 'products found' },
+  sortBy: { uz: 'Saralash', ru: 'Сортировать', en: 'Sort by' },
+  popular: { uz: 'Ommabop', ru: 'Популярные', en: 'Popular' },
+  newest: { uz: 'Yangi', ru: 'Новые', en: 'Newest' },
+  priceLowHigh: { uz: 'Narx: Pastdan yuqoriga', ru: 'Цена: по возрастанию', en: 'Price: Low to High' },
+  priceHighLow: { uz: 'Narx: Yuqoridan pastga', ru: 'Цена: по убыванию', en: 'Price: High to Low' },
+  allProducts: { uz: 'Barcha mahsulotlar', ru: 'Все товары', en: 'All Products' },
+  dealsDiscounts: { uz: 'Aksiyalar va chegirmalar', ru: 'Акции и скидки', en: 'Deals & Discounts' },
+  
+  welcomeBack: { uz: 'Qaytganingiz bilan!', ru: 'С возвращением!', en: 'Welcome back!' },
+  loginSuccess: { uz: 'Muvaffaqiyatli kirdingiz', ru: 'Вы успешно вошли', en: 'You have successfully logged in' },
+  error: { uz: 'Xatolik', ru: 'Ошибка', en: 'Error' },
+  passwordsNotMatch: { uz: 'Parollar mos kelmaydi', ru: 'Пароли не совпадают', en: 'Passwords do not match' },
+  success: { uz: 'Muvaffaqiyat!', ru: 'Успешно!', en: 'Success!' },
+  accountCreated: { uz: 'Hisob yaratildi', ru: 'Аккаунт создан', en: 'Account created' },
+  
+  orContinueWith: { uz: 'yoki davom eting', ru: 'или продолжите с', en: 'or continue with' },
+  termsAgree: { uz: 'Ro\'yxatdan o\'tish orqali siz', ru: 'Регистрируясь, вы соглашаетесь с', en: 'By registering, you agree to our' },
+  termsOfService: { uz: 'Foydalanish shartlari', ru: 'Условия использования', en: 'Terms of Service' },
+  and: { uz: 'va', ru: 'и', en: 'and' },
+  privacyPolicy: { uz: 'Maxfiylik siyosati', ru: 'Политика конфиденциальности', en: 'Privacy Policy' },
 };
 
 interface LanguageContextType {
@@ -148,7 +185,6 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
     if (savedLang && ['uz', 'ru', 'en'].includes(savedLang)) {
       setLanguageState(savedLang);
     } else {
-      // First visit - show language popup
       setShowLanguagePopup(true);
     }
   }, []);

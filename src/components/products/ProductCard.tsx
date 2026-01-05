@@ -16,11 +16,6 @@ const formatPrice = (price: number) => {
   return new Intl.NumberFormat("uz-UZ").format(price);
 };
 
-// Helper function to generate mock images based on the main image
-const generateMockImages = (mainImage: string): string[] => {
-  return [mainImage, mainImage, mainImage, mainImage];
-};
-
 const ProductCard = ({ product }: ProductCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -37,8 +32,11 @@ const ProductCard = ({ product }: ProductCardProps) => {
   const isLiked = isInWishlist(product.id);
 
   const productImages = useMemo(() => {
-    return generateMockImages(product.image);
-  }, [product.image]);
+    if (product.images && product.images.length > 0) {
+      return product.images;
+    }
+    return [product.image];
+  }, [product.images, product.image]);
 
   const monthlyPayment = Math.round((product.price * 1.15) / 12);
   const stockCount = product.stockCount ?? Math.floor(Math.random() * 50) + 5;
@@ -48,12 +46,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
     e.stopPropagation();
     addToCart(product);
     toast({
-      title:
-        language === "ru"
-          ? "Добавлено в корзину"
-          : language === "uz"
-          ? "Savatga qo'shildi"
-          : "Added to cart",
+      title: t('addedToCart'),
       className: "border-l-4 border-l-purple-500",
     });
   };
@@ -64,22 +57,12 @@ const ProductCard = ({ product }: ProductCardProps) => {
     if (isLiked) {
       removeFromWishlist(product.id);
       toast({
-        title:
-          language === "ru"
-            ? "Удалено из избранного"
-            : language === "uz"
-            ? "Sevimlilardan olib tashlandi"
-            : "Removed from wishlist",
+        title: t('removedFromWishlist'),
       });
     } else {
       addToWishlist(product);
       toast({
-        title:
-          language === "ru"
-            ? "Добавлено в избранное"
-            : language === "uz"
-            ? "Sevimlilarga qo'shildi"
-            : "Added to wishlist",
+        title: t('addedToWishlist'),
         className: "border-l-4 border-l-red-500",
       });
     }
@@ -121,7 +104,6 @@ const ProductCard = ({ product }: ProductCardProps) => {
             : "shadow-sm"
         )}
       >
-        {/* --- Image Section --- */}
         <div
           ref={imageContainerRef}
           className="relative aspect-square overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800"
@@ -133,12 +115,11 @@ const ProductCard = ({ product }: ProductCardProps) => {
             className="w-full h-full object-contain p-4 md:p-6"
           />
 
-          {/* Top Badges */}
           <div className="absolute top-2 md:top-3 left-2 md:left-3 flex flex-col gap-1 z-10">
             {product.isNew && (
               <Badge className="bg-gradient-to-r from-emerald-400 to-teal-500 border-0 text-white shadow-sm px-1.5 md:px-2 py-0.5 text-[9px] md:text-[10px] uppercase font-bold tracking-wider">
-                <Zap className="w-2.5 h-2.5 md:w-3 md:h-3 mr-0.5 md:mr-1 fill-current" />{" "}
-                NEW
+                <Zap className="w-2.5 h-2.5 md:w-3 md:h-3 mr-0.5 md:mr-1 fill-current" />
+                {t('new')}
               </Badge>
             )}
             {product.discount && (
@@ -148,7 +129,6 @@ const ProductCard = ({ product }: ProductCardProps) => {
             )}
           </div>
 
-          {/* Stock Count Badge */}
           <div className="absolute top-2 md:top-3 right-10 md:right-12 z-10">
             <Badge
               variant="outline"
@@ -159,7 +139,6 @@ const ProductCard = ({ product }: ProductCardProps) => {
             </Badge>
           </div>
 
-          {/* Wishlist Button */}
           <button
             onClick={handleToggleWishlist}
             className={cn(
@@ -177,7 +156,6 @@ const ProductCard = ({ product }: ProductCardProps) => {
             />
           </button>
 
-          {/* Image Indicators */}
           <div className="absolute bottom-2 md:bottom-3 left-0 right-0 flex justify-center gap-1 md:gap-1.5 z-10 px-4">
             {productImages.length > 1 && (
               <div
@@ -201,9 +179,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
           </div>
         </div>
 
-        {/* --- Content Section --- */}
         <div className="p-3 md:p-4 flex flex-col gap-1.5 md:gap-2">
-          {/* Monthly Payment */}
           <div className="w-fit">
             <Badge
               variant="outline"
@@ -216,17 +192,15 @@ const ProductCard = ({ product }: ProductCardProps) => {
                     : language === "ru"
                     ? "сум"
                     : "so'm"}{" "}
-                {t("monthly") || "/ oyiga"}
+                {t("monthly")}
               </span>
             </Badge>
           </div>
 
-          {/* Title */}
           <h3 className="font-medium text-xs md:text-sm leading-tight text-foreground/90 line-clamp-2 min-h-[2.5em] group-hover:text-violet-600 transition-colors">
             {product.name}
           </h3>
 
-          {/* Rating */}
           <div className="flex items-center gap-1">
             <Star className="h-3 w-3 md:h-3.5 md:w-3.5 fill-amber-400 text-amber-400" />
             <span className="text-[10px] md:text-xs font-medium text-muted-foreground pt-0.5">
@@ -237,7 +211,6 @@ const ProductCard = ({ product }: ProductCardProps) => {
             </span>
           </div>
 
-          {/* Price & Add Button */}
           <div className="flex items-end justify-between mt-1">
             <div className="flex flex-col">
               {product.originalPrice && (
@@ -264,7 +237,6 @@ const ProductCard = ({ product }: ProductCardProps) => {
               </div>
             </div>
 
-            {/* Cart Button */}
             <Button
               onClick={handleAddToCart}
               disabled={!product.inStock}
