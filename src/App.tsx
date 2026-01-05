@@ -15,6 +15,8 @@ import Wishlist from "./pages/Wishlist";
 import Auth from "./pages/Auth";
 import Profile from "./pages/Profile";
 import Compare from "./pages/Compare";
+import OrderTracking from "./pages/OrderTracking";
+import Assignment from "./pages/Assignment";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -38,6 +40,8 @@ const App = () => (
               <Route path="/auth" element={<Auth />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/compare" element={<Compare />} />
+              <Route path="/order-tracking" element={<OrderTracking />} />
+              <Route path="/assignment" element={<Assignment />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </BrowserRouter>

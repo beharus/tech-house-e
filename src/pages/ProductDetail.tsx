@@ -27,9 +27,8 @@ const ProductDetail = () => {
 
   const product = products.find(p => p.id === id);
   
-  // Mock multiple images
-  const productImages = product ? [product.image, product.image, product.image, product.image] : [];
-  const stockCount = 15;
+  const productImages = product?.images?.length ? product.images : (product ? [product.image] : []);
+  const stockCount = product?.stockCount ?? 15;
 
   useEffect(() => {
     if (product && !hasAddedRef.current) {

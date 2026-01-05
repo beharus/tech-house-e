@@ -1,6 +1,6 @@
 import { useState, useRef, useMemo, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { Heart, ShoppingCart, Star, Zap } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
+import { Heart, ShoppingCart, Star, Zap, GitCompareArrows } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Product, useCart } from "@/context/CartContext";
@@ -41,6 +41,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [imageLoaded, setImageLoaded] = useState(false);
   const imageContainerRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
 
   const {
     addToCart,
@@ -93,6 +94,16 @@ const ProductCard = ({ product }: ProductCardProps) => {
         className: "border-l-4 border-l-red-500",
       });
     }
+  };
+
+  const handleCompare = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    navigate(`/compare?ids=${product.id}`);
+    toast({
+      title: t('addedToCompare'),
+      className: "border-l-4 border-l-blue-500",
+    });
   };
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -175,22 +186,30 @@ const ProductCard = ({ product }: ProductCardProps) => {
             </Badge>
           </div>
 
-          <button
-            onClick={handleToggleWishlist}
-            className={cn(
-              "absolute top-2 md:top-3 right-2 md:right-3 w-7 h-7 md:w-8 md:h-8 rounded-full bg-white/80 dark:bg-black/50 backdrop-blur-sm flex items-center justify-center transition-all duration-300 hover:bg-white hover:scale-110 hover:shadow-md z-10",
-              isHovered ? "opacity-100" : "opacity-100"
-            )}
-          >
-            <Heart
+          <div className="absolute top-2 md:top-3 right-2 md:right-3 flex flex-col gap-1.5 z-10">
+            <button
+              onClick={handleToggleWishlist}
+              className="w-7 h-7 md:w-8 md:h-8 rounded-full bg-white/80 dark:bg-black/50 backdrop-blur-sm flex items-center justify-center transition-all duration-300 hover:bg-white hover:scale-110 hover:shadow-md"
+            >
+              <Heart
+                className={cn(
+                  "h-3.5 w-3.5 md:h-4 md:w-4 transition-colors",
+                  isLiked
+                    ? "text-red-500 fill-red-500"
+                    : "text-gray-600 dark:text-gray-300 hover:text-red-500"
+                )}
+              />
+            </button>
+            <button
+              onClick={handleCompare}
               className={cn(
-                "h-3.5 w-3.5 md:h-4 md:w-4 transition-colors",
-                isLiked
-                  ? "text-red-500 fill-red-500"
-                  : "text-gray-600 dark:text-gray-300 hover:text-red-500"
+                "w-7 h-7 md:w-8 md:h-8 rounded-full bg-white/80 dark:bg-black/50 backdrop-blur-sm flex items-center justify-center transition-all duration-300 hover:bg-white hover:scale-110 hover:shadow-md",
+                isHovered ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-2"
               )}
-            />
-          </button>
+            >
+              <GitCompareArrows className="h-3.5 w-3.5 md:h-4 md:w-4 text-gray-600 dark:text-gray-300 hover:text-blue-500 transition-colors" />
+            </button>
+          </div>
 
           <div className="absolute bottom-2 md:bottom-3 left-0 right-0 flex justify-center gap-1 md:gap-1.5 z-10 px-4">
             {productImages.length > 1 && (
