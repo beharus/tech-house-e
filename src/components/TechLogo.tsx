@@ -11,27 +11,19 @@ const TechLogo = ({ className, showText = true, variant = 'light' }: TechLogoPro
   
   return (
     <div className={cn("flex items-center gap-1.5 md:gap-2", className)}>
-      {/* T Logo SVG */}
-      <svg viewBox="0 0 50 50" className="w-8 h-8 md:w-10 md:h-10 shrink-0">
-        <defs>
-          <linearGradient id="techLogoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="hsl(var(--primary))" />
-            <stop offset="100%" stopColor="hsl(var(--primary) / 0.7)" />
-          </linearGradient>
-        </defs>
-        {/* Main T shape */}
+      <svg
+        viewBox="0 0 324 449"
+        className="w-6 h-10 md:w-7 md:h-12 shrink-0"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path d="M0 0H324V60L0 148V0Z" fill="#6c28d9" />
         <path
-          d="M8 8 L42 8 L42 16 L29 16 L29 42 L21 42 L21 16 L8 16 Z"
-          fill="url(#techLogoGradient)"
-        />
-        {/* Arrow/cursor pointing down-right */}
-        <path
-          d="M25 24 L40 42 L32 42 L25 32 Z"
-          fill="url(#techLogoGradient)"
+          d="M166 106.463L290 217L78 448.463L166 106.463Z"
+          fill="#8b5cf6"
         />
       </svg>
       
-      {/* Text */}
       {showText && (
         <span className={cn("hidden sm:block text-lg md:text-xl font-bold", textColor)}>
           <span className="bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">ech</span>

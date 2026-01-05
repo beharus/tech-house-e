@@ -1,10 +1,22 @@
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { useLanguage, Language } from '@/context/LanguageContext';
 
-const languages: { code: Language; name: string; flag: string }[] = [
-  { code: 'uz', name: "O'zbekcha", flag: '🇺🇿' },
-  { code: 'ru', name: 'Русский', flag: '🇷🇺' },
-  { code: 'en', name: 'English', flag: '🇬🇧' },
+const languages: { code: Language; name: string; flagUrl: string }[] = [
+  { 
+    code: 'uz', 
+    name: "O'zbekcha", 
+    flagUrl: 'https://flagcdn.com/w40/uz.png'
+  },
+  { 
+    code: 'ru', 
+    name: 'Русский', 
+    flagUrl: 'https://flagcdn.com/w40/ru.png'
+  },
+  { 
+    code: 'en', 
+    name: 'English', 
+    flagUrl: 'https://flagcdn.com/w40/gb.png'
+  },
 ];
 
 const LanguagePopup = () => {
@@ -25,7 +37,11 @@ const LanguagePopup = () => {
               onClick={() => setLanguage(lang.code)}
               className="w-full flex items-center gap-4 p-4 rounded-xl border border-border hover:border-primary hover:bg-accent transition-all duration-200"
             >
-              <span className="text-2xl">{lang.flag}</span>
+              <img 
+                src={lang.flagUrl} 
+                alt={lang.name}
+                className="w-8 h-6 object-cover rounded shadow-sm"
+              />
               <span className="font-medium">{lang.name}</span>
             </button>
           ))}

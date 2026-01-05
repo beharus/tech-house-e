@@ -34,10 +34,10 @@ const searchPlaceholders = [
   "searchHeadphones",
 ];
 
-const languages: { code: Language; name: string; flag: string }[] = [
-  { code: "uz", name: "O'zbekcha", flag: "🇺🇿" },
-  { code: "ru", name: "Русский", flag: "🇷🇺" },
-  { code: "en", name: "English", flag: "🇬🇧" },
+const languages: { code: Language; name: string; flagUrl: string }[] = [
+  { code: "uz", name: "O'zbekcha", flagUrl: "https://flagcdn.com/w20/uz.png" },
+  { code: "ru", name: "Русский", flagUrl: "https://flagcdn.com/w20/ru.png" },
+  { code: "en", name: "English", flagUrl: "https://flagcdn.com/w20/gb.png" },
 ];
 
 // Mega menu subcategories
@@ -230,9 +230,13 @@ const Header = () => {
             </Link>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <button className="flex items-center gap-1 hover:opacity-80 transition-opacity">
+                <button className="flex items-center gap-1.5 hover:opacity-80 transition-opacity">
                   <Globe className="h-3 w-3" />
-                  {languages.find((l) => l.code === language)?.flag}
+                  <img 
+                    src={languages.find((l) => l.code === language)?.flagUrl} 
+                    alt=""
+                    className="w-4 h-3 object-cover rounded-sm"
+                  />
                 </button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
@@ -242,7 +246,7 @@ const Header = () => {
                     onClick={() => setLanguage(lang.code)}
                     className="gap-2"
                   >
-                    <span>{lang.flag}</span>
+                    <img src={lang.flagUrl} alt="" className="w-5 h-4 object-cover rounded-sm" />
                     <span>{lang.name}</span>
                   </DropdownMenuItem>
                 ))}
