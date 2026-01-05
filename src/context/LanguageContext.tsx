@@ -205,7 +205,26 @@ export const translations: Translations = {
   maxCompareProducts: { uz: 'Maksimum 4 ta mahsulot solishtiriladi', ru: 'Максимум 4 товара для сравнения', en: 'Maximum 4 products can be compared' },
   price: { uz: 'Narx', ru: 'Цена', en: 'Price' },
   features: { uz: 'Xususiyatlar', ru: 'Характеристики', en: 'Features' },
-  addToCompare: { uz: 'Solishtirishga qo\'shish', ru: 'Добавить к сравнению', en: 'Add to Compare' },
+  addedToCompare: { uz: 'Solishtirishga qo\'shildi', ru: 'Добавлено к сравнению', en: 'Added to compare' },
+  
+  orderTracking: { uz: 'Buyurtmani kuzatish', ru: 'Отслеживание заказа', en: 'Order Tracking' },
+  trackYourOrder: { uz: 'Buyurtmangizni real vaqtda kuzating', ru: 'Отслеживайте статус заказа в реальном времени', en: 'Track your order status in real-time' },
+  backToProfile: { uz: 'Profilga qaytish', ru: 'Вернуться в профиль', en: 'Back to Profile' },
+  enterOrderId: { uz: 'Buyurtma raqamini kiriting', ru: 'Введите номер заказа', en: 'Enter your order ID' },
+  searching: { uz: 'Qidirilmoqda...', ru: 'Поиск...', en: 'Searching...' },
+  trackOrder: { uz: 'Buyurtmani kuzatish', ru: 'Отследить заказ', en: 'Track Order' },
+  trackingNumber: { uz: 'Kuzatuv raqami', ru: 'Номер отслеживания', en: 'Tracking Number' },
+  inTransit: { uz: 'Yo\'lda', ru: 'В пути', en: 'In Transit' },
+  progress: { uz: 'Jarayon', ru: 'Прогресс', en: 'Progress' },
+  steps: { uz: 'qadam', ru: 'шагов', en: 'steps' },
+  orderItems: { uz: 'Buyurtma mahsulotlari', ru: 'Товары заказа', en: 'Order Items' },
+  deliveryInfo: { uz: 'Yetkazib berish ma\'lumotlari', ru: 'Информация о доставке', en: 'Delivery Information' },
+  estimatedDelivery: { uz: 'Taxminiy yetkazib berish', ru: 'Ожидаемая доставка', en: 'Estimated Delivery' },
+  carrier: { uz: 'Kuryer xizmati', ru: 'Служба доставки', en: 'Carrier' },
+  shippingAddress: { uz: 'Yetkazib berish manzili', ru: 'Адрес доставки', en: 'Shipping Address' },
+  needHelp: { uz: 'Yordam kerakmi?', ru: 'Нужна помощь?', en: 'Need Help?' },
+  contactSupport: { uz: 'Buyurtmangiz haqida savollar uchun qo\'llab-quvvatlash xizmatiga murojaat qiling.', ru: 'Свяжитесь с нашей службой поддержки по вопросам о заказе.', en: 'Contact our support team for any questions about your order.' },
+  callSupport: { uz: 'Qo\'llab-quvvatlashga qo\'ng\'iroq qilish', ru: 'Позвонить в поддержку', en: 'Call Support' },
 };
 
 interface LanguageContextType {

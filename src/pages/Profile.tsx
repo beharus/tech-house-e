@@ -229,45 +229,41 @@ const Profile = () => {
                     </CardContent>
                   </Card>
 
-                  <div className="grid sm:grid-cols-3 gap-4 mt-6">
-                    <Card className="bg-gradient-to-br from-primary/10 to-primary/5 border-primary/20">
-                      <CardContent className="pt-6">
-                        <div className="flex items-center gap-4">
-                          <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center">
-                            <ShoppingBag className="w-6 h-6 text-primary" />
-                          </div>
-                          <div>
-                            <p className="text-2xl font-bold">{mockOrders.length}</p>
-                            <p className="text-sm text-muted-foreground">{t('totalOrders') || 'Total Orders'}</p>
-                          </div>
+                  <div className="grid sm:grid-cols-3 gap-6 mt-6">
+                    <Card className="group relative overflow-hidden rounded-2xl bg-white dark:bg-card p-0 transition-all duration-500 ease-out hover:shadow-[0_8px_30px_rgb(139,92,246,0.15)] border border-border/50 hover:border-transparent">
+                      <div className="absolute inset-0 bg-gradient-to-br from-white via-white to-violet-100/90 dark:from-card dark:via-card dark:to-violet-900/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-out z-0" />
+                      <CardContent className="relative z-10 pt-6 pb-6">
+                        <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-purple-50 to-violet-100 dark:from-violet-900/50 dark:to-violet-800/50 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-500 ease-out shadow-sm">
+                          <ShoppingBag className="w-7 h-7 text-violet-600 dark:text-violet-400" strokeWidth={1.5} />
                         </div>
+                        <p className="text-3xl font-bold text-foreground group-hover:text-violet-900 dark:group-hover:text-violet-300 transition-colors">{mockOrders.length}</p>
+                        <p className="text-sm text-muted-foreground group-hover:text-muted-foreground/80 transition-colors mt-1">{t('totalOrders') || 'Total Orders'}</p>
                       </CardContent>
+                      <div className="absolute -bottom-6 -right-6 w-24 h-24 rounded-full bg-violet-100/50 dark:bg-violet-800/30 blur-xl opacity-70 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700 ease-out z-0 pointer-events-none" />
                     </Card>
-                    <Card className="bg-gradient-to-br from-red-500/10 to-red-500/5 border-red-500/20">
-                      <CardContent className="pt-6">
-                        <div className="flex items-center gap-4">
-                          <div className="w-12 h-12 rounded-xl bg-red-500/20 flex items-center justify-center">
-                            <Heart className="w-6 h-6 text-red-500" />
-                          </div>
-                          <div>
-                            <p className="text-2xl font-bold">{wishlist.length}</p>
-                            <p className="text-sm text-muted-foreground">{t('wishlist') || 'Wishlist'}</p>
-                          </div>
+
+                    <Card className="group relative overflow-hidden rounded-2xl bg-white dark:bg-card p-0 transition-all duration-500 ease-out hover:shadow-[0_8px_30px_rgb(239,68,68,0.15)] border border-border/50 hover:border-transparent">
+                      <div className="absolute inset-0 bg-gradient-to-br from-white via-white to-red-100/90 dark:from-card dark:via-card dark:to-red-900/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-out z-0" />
+                      <CardContent className="relative z-10 pt-6 pb-6">
+                        <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-red-50 to-rose-100 dark:from-red-900/50 dark:to-rose-800/50 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-500 ease-out shadow-sm">
+                          <Heart className="w-7 h-7 text-red-500" strokeWidth={1.5} />
                         </div>
+                        <p className="text-3xl font-bold text-foreground group-hover:text-red-900 dark:group-hover:text-red-300 transition-colors">{wishlist.length}</p>
+                        <p className="text-sm text-muted-foreground group-hover:text-muted-foreground/80 transition-colors mt-1">{t('wishlist') || 'Wishlist'}</p>
                       </CardContent>
+                      <div className="absolute -bottom-6 -right-6 w-24 h-24 rounded-full bg-red-100/50 dark:bg-red-800/30 blur-xl opacity-70 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700 ease-out z-0 pointer-events-none" />
                     </Card>
-                    <Card className="bg-gradient-to-br from-amber-500/10 to-amber-500/5 border-amber-500/20">
-                      <CardContent className="pt-6">
-                        <div className="flex items-center gap-4">
-                          <div className="w-12 h-12 rounded-xl bg-amber-500/20 flex items-center justify-center">
-                            <Gift className="w-6 h-6 text-amber-500" />
-                          </div>
-                          <div>
-                            <p className="text-2xl font-bold">2,500</p>
-                            <p className="text-sm text-muted-foreground">{t('points') || 'Points'}</p>
-                          </div>
+
+                    <Card className="group relative overflow-hidden rounded-2xl bg-white dark:bg-card p-0 transition-all duration-500 ease-out hover:shadow-[0_8px_30px_rgb(245,158,11,0.15)] border border-border/50 hover:border-transparent">
+                      <div className="absolute inset-0 bg-gradient-to-br from-white via-white to-amber-100/90 dark:from-card dark:via-card dark:to-amber-900/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-out z-0" />
+                      <CardContent className="relative z-10 pt-6 pb-6">
+                        <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-50 to-orange-100 dark:from-amber-900/50 dark:to-orange-800/50 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-500 ease-out shadow-sm">
+                          <Gift className="w-7 h-7 text-amber-500" strokeWidth={1.5} />
                         </div>
+                        <p className="text-3xl font-bold text-foreground group-hover:text-amber-900 dark:group-hover:text-amber-300 transition-colors">2,500</p>
+                        <p className="text-sm text-muted-foreground group-hover:text-muted-foreground/80 transition-colors mt-1">{t('points') || 'Points'}</p>
                       </CardContent>
+                      <div className="absolute -bottom-6 -right-6 w-24 h-24 rounded-full bg-amber-100/50 dark:bg-amber-800/30 blur-xl opacity-70 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700 ease-out z-0 pointer-events-none" />
                     </Card>
                   </div>
                 </TabsContent>
