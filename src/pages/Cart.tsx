@@ -16,7 +16,7 @@ const Cart = () => {
     return (
       <div className="min-h-screen flex flex-col bg-background">
         <Header />
-        <main className="flex-1 flex items-center justify-center pt-[180px]">
+        <main className="flex-1 mb-20 mb:mb-auto flex items-center justify-center pt-[180px]">
           <div className="text-center">
             <ShoppingBag className="h-24 w-24 text-muted-foreground mx-auto mb-6" />
             <h1 className="text-2xl font-bold mb-2">Your cart is empty</h1>
@@ -45,7 +45,6 @@ const Cart = () => {
           <h1 className="text-2xl font-bold mb-6">Shopping Cart ({totalItems} items)</h1>
 
           <div className="grid lg:grid-cols-3 gap-8">
-            {/* Cart items */}
             <div className="lg:col-span-2 space-y-4">
               {cart.map(item => (
                 <div
@@ -107,8 +106,6 @@ const Cart = () => {
                 </div>
               ))}
             </div>
-
-            {/* Order summary */}
             <div className="lg:col-span-1">
               <div className="bg-card rounded-xl p-6 sticky top-32">
                 <h2 className="font-semibold text-lg mb-4">Order Summary</h2>
