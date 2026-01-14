@@ -4,6 +4,8 @@ import HeroSection from '@/components/home/HeroSection';
 import CategoryCarousel from '@/components/home/CategoryCarousel';
 import ProductsSection from '@/components/home/ProductsSection';
 import FeaturesSection from '@/components/home/FeaturesSection';
+import StoreLocationsSection from '@/components/home/StoreLocationsSection';
+import FAQSection from '@/components/home/FAQSection';
 import FloatingButtons from '@/components/FloatingButtons';
 import { products } from '@/data/products';
 import { useCart } from '@/context/CartContext';
@@ -36,7 +38,6 @@ const Index = () => {
           viewAllLink="/products?new=true"
         />
         
-        
         <ProductsSection
           title={t('bestSellers')}
           products={products}
@@ -51,6 +52,10 @@ const Index = () => {
         )}
         
         <FeaturesSection />
+        
+        <StoreLocationsSection />
+        
+        <FAQSection />
       </main>
       
       <FloatingButtons />
