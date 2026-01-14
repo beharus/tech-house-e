@@ -225,6 +225,32 @@ export const translations: Translations = {
   needHelp: { uz: 'Yordam kerakmi?', ru: 'Нужна помощь?', en: 'Need Help?' },
   contactSupport: { uz: 'Buyurtmangiz haqida savollar uchun qo\'llab-quvvatlash xizmatiga murojaat qiling.', ru: 'Свяжитесь с нашей службой поддержки по вопросам о заказе.', en: 'Contact our support team for any questions about your order.' },
   callSupport: { uz: 'Qo\'llab-quvvatlashga qo\'ng\'iroq qilish', ru: 'Позвонить в поддержку', en: 'Call Support' },
+
+  // Store Locations
+  storeChilanzar: { uz: 'Tech House Chilanzar', ru: 'Tech House Чиланзар', en: 'Tech House Chilanzar' },
+  storeSergeli: { uz: 'Tech House Sergeli', ru: 'Tech House Сергели', en: 'Tech House Sergeli' },
+  storeYunusabad: { uz: 'Tech House Yunusobod', ru: 'Tech House Юнусабад', en: 'Tech House Yunusabad' },
+  storeSamarkand: { uz: 'Tech House Samarqand', ru: 'Tech House Самарканд', en: 'Tech House Samarkand' },
+  storeBukhara: { uz: 'Tech House Buxoro', ru: 'Tech House Бухара', en: 'Tech House Bukhara' },
+
+  // FAQ Questions and Answers
+  faqDeliveryQ: { uz: 'Yetkazib berish qancha vaqt oladi?', ru: 'Сколько времени занимает доставка?', en: 'How long does delivery take?' },
+  faqDeliveryA: { uz: 'Toshkent shahri bo\'ylab yetkazib berish 1-2 kun, viloyatlarga 3-5 kun ichida amalga oshiriladi. 500,000 so\'mdan ortiq buyurtmalar uchun yetkazib berish bepul.', ru: 'Доставка по Ташкенту занимает 1-2 дня, в регионы — 3-5 дней. Бесплатная доставка при заказе от 500 000 сум.', en: 'Delivery within Tashkent takes 1-2 days, to regions 3-5 days. Free delivery for orders over 500,000 sum.' },
+  
+  faqPaymentQ: { uz: 'Qanday to\'lov usullari mavjud?', ru: 'Какие способы оплаты доступны?', en: 'What payment methods are available?' },
+  faqPaymentA: { uz: 'Naqd pul, bank kartasi (Uzcard, Humo, Visa, MasterCard), Click, Payme va bank o\'tkazmasi orqali to\'lashingiz mumkin.', ru: 'Вы можете оплатить наличными, банковской картой (Uzcard, Humo, Visa, MasterCard), через Click, Payme или банковским переводом.', en: 'You can pay with cash, bank card (Uzcard, Humo, Visa, MasterCard), Click, Payme, or bank transfer.' },
+  
+  faqReturnQ: { uz: 'Mahsulotni qaytarish mumkinmi?', ru: 'Можно ли вернуть товар?', en: 'Can I return a product?' },
+  faqReturnA: { uz: 'Ha, 14 kun ichida mahsulotni qaytarishingiz mumkin. Mahsulot asl holatida, qadoqlangan va hujjatlari bilan bo\'lishi kerak.', ru: 'Да, вы можете вернуть товар в течение 14 дней. Товар должен быть в оригинальном состоянии, упаковке и с документами.', en: 'Yes, you can return products within 14 days. The product must be in original condition, packaging, and with documents.' },
+  
+  faqWarrantyQ: { uz: 'Kafolat qanday ishlaydi?', ru: 'Как работает гарантия?', en: 'How does warranty work?' },
+  faqWarrantyA: { uz: 'Barcha mahsulotlar rasmiy ishlab chiqaruvchi kafolatiga ega. Kafolat muddati mahsulotga qarab 1 yildan 3 yilgacha. Kafolat xizmati uchun chek va kafolat kartasini saqlang.', ru: 'Все товары имеют официальную гарантию производителя от 1 до 3 лет. Сохраняйте чек и гарантийный талон для гарантийного обслуживания.', en: 'All products have official manufacturer warranty from 1 to 3 years. Keep your receipt and warranty card for warranty service.' },
+  
+  faqInstallmentQ: { uz: 'Bo\'lib to\'lash mavjudmi?', ru: 'Есть ли рассрочка?', en: 'Is installment payment available?' },
+  faqInstallmentA: { uz: 'Ha, 3, 6, 9 va 12 oylik bo\'lib to\'lash mavjud. Dastlabki to\'lov 0% dan boshlanadi. Bo\'lib to\'lash uchun pasport va plastik karta talab qilinadi.', ru: 'Да, доступна рассрочка на 3, 6, 9 и 12 месяцев. Первоначальный взнос от 0%. Для оформления нужен паспорт и пластиковая карта.', en: 'Yes, installment plans for 3, 6, 9, and 12 months are available. Down payment starts from 0%. Passport and bank card required.' },
+  
+  faqTrackingQ: { uz: 'Buyurtmani qanday kuzataman?', ru: 'Как отследить заказ?', en: 'How can I track my order?' },
+  faqTrackingA: { uz: 'Buyurtma tasdiqlangandan so\'ng SMS orqali kuzatuv raqami yuboriladi. Saytdagi "Buyurtmani kuzatish" bo\'limida yoki profil sahifasida buyurtma holatini tekshirishingiz mumkin.', ru: 'После подтверждения заказа вам придет SMS с номером отслеживания. Вы можете проверить статус в разделе "Отслеживание заказа" или в профиле.', en: 'After order confirmation, you will receive an SMS with tracking number. You can check status in "Order Tracking" section or in your profile.' },
 };
 
 interface LanguageContextType {
