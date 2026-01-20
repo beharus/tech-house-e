@@ -2,7 +2,6 @@ import { MapPin, Phone, Clock } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { useLanguage } from '@/context/LanguageContext';
 
-// Store data with translations
 const stores = [
   {
     id: 1,
@@ -50,14 +49,13 @@ const StoreLocationsSection = () => {
   const { t } = useLanguage();
 
   return (
-    <section className="py-12 bg-muted/30">
+    <section className="py-12">
       <div className="container mx-auto px-4">
-        {/* Section Title */}
+        
         <h2 className="text-2xl md:text-3xl font-bold text-center mb-8">
           {t('ourStores')}
         </h2>
 
-        {/* Main Map - Shows Tashkent area */}
         <div className="mb-8 rounded-xl overflow-hidden shadow-lg">
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d191884.7!2d69.1!3d41.3!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38ae8b0cc379e9c3%3A0xa5a9323b4aa5cb98!2sTashkent%2C%20Uzbekistan!5e0!3m2!1sen!2s!4v1234567890"
