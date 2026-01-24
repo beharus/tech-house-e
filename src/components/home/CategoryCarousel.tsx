@@ -63,25 +63,17 @@ const CategoryCarousel = () => {
             <Link
               key={`${category.id}-${index}`}
               to={`/products?category=${category.id}`}
-              // Card Styling:
-              // 1. Base: White, rounded-3xl, subtle border.
-              // 2. Hover: Lift up (-translate-y-1), violet shadow, border fade.
               className="group flex flex-col items-center justify-between p-4 min-w-[150px] md:min-w-[170px] h-[180px] rounded-[24px] bg-white border border-gray-100 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgb(139,92,246,0.15)] hover:border-violet-100"
             >
-              {/* Image / Icon Container */}
               <div className="flex-1 w-full flex items-center justify-center mb-3">
                 <div className="relative w-28 h-24 flex items-center justify-center">
-                  
-                  {/* Decorative background blob behind image */}
                   <div className="absolute inset-0 bg-gray-50 rounded-2xl scale-90 group-hover:scale-100 group-hover:bg-violet-50 transition-all duration-300" />
 
                   {category.isDiscount ? (
-                     // Discount Icon Style
                     <div className="relative z-10 w-16 h-16 rounded-2xl bg-red-50 group-hover:bg-red-100 transition-colors duration-300 flex items-center justify-center">
                       <Percent className="h-8 w-8 text-red-500" strokeWidth={2.5} />
                     </div>
                   ) : (
-                    // Product Image Style
                     <img
                       src={category.image!}
                       alt={t(category.nameKey)}
@@ -90,9 +82,7 @@ const CategoryCarousel = () => {
                   )}
                 </div>
               </div>
-
-              {/* Text Label */}
-              <span className="text-sm md:text-base font-semibold text-gray-700 text-center whitespace-nowrap group-hover:text-violet-700 transition-colors duration-300">
+              <span className="text-sm line-clamp-1 px-1.5 md:text-base font-semibold text-gray-700 text-center whitespace-nowrap group-hover:text-violet-700 transition-colors duration-300">
                 {t(category.nameKey)}
               </span>
             </Link>
